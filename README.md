@@ -19,11 +19,11 @@ The Solid Form Viewer can create a Web Form when a template URL is provided.
 
 ## The Form Template
 
-https://bellow2.ugent.be/test/dev/form/activity-form.ttl
+https://bellow2.ugent.be/test/dev/form/book-review.form.ttl
 
 ## The Form Viewer App
 
-https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/activity-form.ttl
+https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/book-review.form.ttl
 
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
