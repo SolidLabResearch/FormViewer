@@ -102,13 +102,13 @@
     <table>
     <tr>
     <th>Form template:</th>
-    <td>{formLocation}</td>
+    <td><a href="{formLocation}">{formLocation}</a></td>
     <th>Endpoint</th>
-    <td>{#if hydra}{hydra.endpoint}{/if}</td>
+    <td>{#if hydra}<a href="{hydra.endpoint}">{hydra.endpoint}</a>{/if}</td>
     </tr>
     <tr>
     <th>Data template:</th> 
-    <td>{dataLocation}</td>
+    <td>{#if dataLocation}<a href="{dataLocation}">{dataLocation}</a>{/if}</td>
     <th>Method</th>
     <td>{#if hydra}{hydra.method}{/if}</td>
     </tr>
