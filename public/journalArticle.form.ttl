@@ -1,0 +1,566 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix form:  <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
+@prefix ex:    <https://example.org/#> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix :      <https://bellow2.ugent.be/test/dev/form/activity-form.ttl#> .
+
+:form a form:Form ;
+   hydra:endpoint <https://bellow2.ugent.be/test/dev/form/inbox/> ;
+   hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "POST"
+   ] ;
+   form:binding ex:JournalArticle .
+
+:articleType
+   a form:Field ;
+   form:binding ex:articleType ;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:OriginalArticle;
+        form:label    "Original Article"@en ;
+      ] 
+      [
+        form:value    ex:ReviewArticle ;
+        form:label    "Review Article"@en ;
+      ]
+      [
+        form:value    ex:LetterNote ;
+        form:label    "Letter/Note"@en ;
+      ]
+      [
+        form:value    ex:ProceedingsPaper;
+        form:label    "Proceedings Paper"@en ;
+      ]
+      ) ;
+   form:label  "Article Type"@en ;
+   form:order 0 .
+
+:author
+   a form:Field ;
+   form:binding ex:author;
+   form:widget "group" ;
+   form:multiple true ;
+   form:label "Author"@en ;
+   form:required true ;
+   form:order 1 . 
+
+:authorFirstName
+   a form:Field ;
+   form:binding ex:authorFirstName;
+   form:widget "string" ;
+   form:group "author" ;
+   form:label "First Name"@en ;
+   form:order 0 ;
+   form:required true .
+
+:authorLastName
+   a form:Field ;
+   form:binding ex:authorLastName;
+   form:widget "string" ;
+   form:group "author" ;
+   form:label "Last Name"@en ;
+   form:order 1 ;
+   form:required true .
+
+:authorExtern
+    a form:Field ;
+    form:binding  ex:authorUGent;
+    form:widget   "checkbox" ;
+    form:group "author" ;
+    form:label    "Ugent?"@en ;
+    form:required true ;
+    form:order 2 .
+
+:authorRole
+   a form:Field ;
+   form:binding ex:authorRole;
+    form:group "author" ;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:FirstAuthor;
+        form:label    "First Author"@en ;
+      ] 
+      [
+        form:value    ex:LastAuthor;
+        form:label    "Last Author"@en ;
+      ]
+      [
+        form:value    ex:Conceptualization;
+        form:label    "Conceptualization"@en ;
+      ]
+      [
+        form:value    ex:DataCuration;
+        form:label    "DataCuration"@en ;
+      ]
+      [
+        form:value    ex:FormalAnalysis;
+        form:label    "Formal Analysis"@en ;
+      ]
+      [
+        form:value    ex:FundingAcquisition;
+        form:label    "Funding Acquisition"@en ;
+      ]
+      [
+        form:value    ex:Investigation;
+        form:label    "Investigation"@en ;
+      ]
+      [
+        form:value    ex:Methodology;
+        form:label    "Methodology"@en ;
+      ]
+      [
+        form:value    ex:ProjectAdministration;
+        form:label    "Project Administration"@en ;
+      ]
+      [
+        form:value    ex:Resources;
+        form:label    "Resources"@en ;
+      ]
+      [
+        form:value    ex:Software;
+        form:label    "Software"@en ;
+      ]
+      [
+        form:value    ex:Supervision;
+        form:label    "Supervision"@en ;
+      ]
+      [
+        form:value    ex:Validation;
+        form:label    "Validation"@en ;
+      ]
+      [
+        form:value    ex:Visualization;
+        form:label    "Visualization"@en ;
+      ]
+      [
+        form:value    ex:WritingOriginalDraft;
+        form:label    "Writing - original draft"@en ;
+      ]
+      [
+        form:value    ex:WritingOriginalDraft;
+        form:label    "Writing - review & editing"@en ;
+      ]
+      ) ;
+   form:label  "Role"@en ;
+   form:required true ;
+   form:order 3 .
+
+
+:title
+   a form:Field ;
+   form:binding ex:title;
+   form:widget "string" ;
+   form:label "Title"@en ;
+   form:order 2 ;
+   form:required true .
+
+:alteranativeTitle
+   a form:Field ;
+   form:binding ex:alternaticeTitle;
+   form:widget "string" ;
+   form:label "Alternative Title"@en ;
+   form:order 3 ;
+   form:required true .
+
+:department
+   a form:Field ;
+   form:binding ex:department;
+   form:widget "url" ;
+   form:label "Department"@en ;
+   form:order 4 ;
+   form:multiple true.
+
+:project
+   a form:Field ;
+   form:binding ex:project;
+   form:widget "url" ;
+   form:label "Project"@en ;
+   form:order 5 ;
+   form:multiple true.
+
+:journalTitle
+   a form:Field ;
+   form:binding ex:journalTitle;
+   form:widget "string" ;
+   form:label "Journal Title"@en ;
+   form:order 6 ;
+   form:required true .
+
+:publicationShortTitle
+   a form:Field ;
+   form:binding ex:publicationShortTitle;
+   form:widget "string" ;
+   form:label "Publication Short Title"@en ;
+   form:order 7 .
+
+:doi
+   a form:Field ;
+   form:binding ex:doi;
+   form:widget "url" ;
+   form:label "DOI"@en ;
+   form:order 8 .
+
+:editor
+   a form:Field ;
+   form:binding ex:editor;
+   form:widget "group" ;
+   form:label "Editor"@en ;
+   form:multiple true ;
+   form:order 9 . 
+
+:editorFirstName
+   a form:Field ;
+   form:binding ex:editorFirstName;
+   form:widget "string" ;
+   form:group "editor" ;
+   form:label "First Name"@en ;
+   form:order 0 ;
+   form:required true .
+
+:editorLastName
+   a form:Field ;
+   form:binding ex:editorLastName;
+   form:widget "string" ;
+   form:group "editor" ;
+   form:label "Last Name"@en ;
+   form:order 1 ;
+   form:required true .
+
+:editorExtern
+    a form:Field ;
+    form:binding  ex:editorUGent;
+    form:widget   "checkbox" ;
+    form:group "editor" ;
+    form:label    "Ugent?"@en ;
+    form:required true ;
+    form:order 2 .
+
+:publisher
+   a form:Field ;
+   form:binding ex:publisher;
+   form:widget "string" ;
+   form:label "Publisher"@en ;
+   form:order 10 .
+
+:placeOfPublication
+   a form:Field ;
+   form:binding ex:placeOfPublication;
+   form:widget "string" ;
+   form:label "Place of Publication"@en ;
+   form:order 11 .
+
+:publishingYear
+   a form:Field ;
+   form:binding ex:publishingYear;
+   form:widget "string" ;
+   form:label "Publishing Year"@en ;
+   form:required true ;
+   form:order 12 .
+
+:notUgentPublication
+    a form:Field ;
+    form:widget   "checkbox" ;
+    form:label    "Published while none of the authors are employed at UGent"@en ;
+    form:binding  ex:notUgentPublication ;
+    form:required true ;
+    form:order 13 .
+
+:volume
+   a form:Field ;
+   form:binding ex:volume;
+   form:widget "string" ;
+   form:label "Volume"@en ;
+   form:order 14 .
+
+:issue
+   a form:Field ;
+   form:binding ex:issue;
+   form:widget "string" ;
+   form:label "Issue"@en ;
+   form:order 15 .
+
+:startPage
+   a form:Field ;
+   form:binding ex:startPage;
+   form:widget "string" ;
+   form:label "Start Page"@en ;
+   form:order 16 .
+
+:endPage
+   a form:Field ;
+   form:binding ex:endPage;
+   form:widget "string" ;
+   form:label "End Page"@en ;
+   form:order 17 .
+
+:numberOfPages
+   a form:Field ;
+   form:binding ex:numberOfPages;
+   form:widget "string" ;
+   form:label "Number of Pages"@en ;
+   form:order 18 .
+
+:articleNumber
+   a form:Field ;
+   form:binding ex:articleNumber;
+   form:widget "string" ;
+   form:label "Article Number"@en ;
+   form:order 19 .
+
+:specialIssueTitle
+   a form:Field ;
+   form:binding ex:specialIssueTitle;
+   form:widget "string" ;
+   form:label "Special Issue Title"@en ;
+   form:order 20 .
+
+:isbx
+   a form:Field ;
+   form:binding ex:isbx;
+   form:widget "url" ;
+   form:label "ISBN/ISSN"@en ;
+   form:multiple true ;
+   form:order 21 .
+
+:status
+   a form:Field ;
+   form:binding ex:status;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Unpublished ;
+        form:label    "Unpublished"@en ;
+      ] 
+      [
+        form:value    ex:Accepted ;
+        form:label    "Accepted"@en ;
+      ]
+      [
+        form:value    ex:Published;
+        form:label    "Published"@en ;
+      ]
+      ) ;
+   form:label  "Status"@en ;
+   form:order 22 .
+
+:language
+   a form:Field ;
+   form:binding ex:language;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:English;
+        form:label    "English"@en ;
+      ] 
+      [
+        form:value    ex:Dutch;
+        form:label    "Dutch"@en ;
+      ]
+      [
+        form:value    ex:French;
+        form:label    "French"@en ;
+      ]
+      ) ;
+   form:label  "Language"@en ;
+   form:order 23 .
+
+:conference
+   a form:Field ;
+   form:binding ex:conference;
+   form:widget "string" ;
+   form:label "Conference"@en ;
+   form:order 24 .
+
+:conferenceLocation
+   a form:Field ;
+   form:binding ex:conferenceLocation;
+   form:widget "string" ;
+   form:label "Conference Location"@en ;
+   form:order 25 .
+
+:conferenceOrganizer
+   a form:Field ;
+   form:binding ex:conferenceOrganizer;
+   form:widget "string" ;
+   form:label "Conference Organizer"@en ;
+   form:order 26 .
+
+:conferenceStartDate
+   a form:Field ;
+   form:binding ex:conferenceStartDate;
+   form:widget "string" ;
+   form:label "Conference Start"@en ;
+   form:order 27 .
+
+:conferenceEndDate
+   a form:Field ;
+   form:binding ex:conferenceEndDate;
+   form:widget "string" ;
+   form:label "Conference End"@en ;
+   form:order 28 .
+
+:fulltext
+   a form:Field ;
+   form:binding ex:fulltext;
+   form:widget "url" ;
+   form:label "Fulltext and Supplementary Material"@en ;
+   form:multiple true ;
+   form:order 29 .
+
+:abstract
+   a form:Field ;
+   form:binding ex:abstract ;
+   form:widget "textarea" ;
+   form:label "Abstract"@en ;
+   form:rows 6 ;
+   form:order 30 .
+
+:researchField
+   a form:Field ;
+   form:binding ex:researchField;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Agriculture;
+        form:label    "Agriculture and Food Sciences"@en ;
+      ] 
+      [
+        form:value    ex:Arts;
+        form:label    "Arts and Architecture"@en ;
+      ]
+      [
+        form:value    ex:Biology;
+        form:label    "Biology and Life Sciences"@en ;
+      ]
+      ) ;
+   form:label  "Research Field"@en ;
+   form:order 31 .
+
+:keyword
+   a form:Field ;
+   form:binding ex:keyword ;
+   form:widget "string" ;
+   form:label "Keywords"@en ;
+   form:multiple true ;
+   form:order 32 .
+
+:identifier
+   a form:Field ;
+   form:binding ex:identifier ;
+   form:widget "group" ;
+   form:label  "External Identifier"@en ;
+   form:multiple true ;
+   form:order 33 .
+
+:identifierType
+   a form:Field ;
+   form:binding ex:identifierType;
+   form:group "identifier" ;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Inspire;
+        form:label    "Inspire"@en ;
+      ] 
+      [
+        form:value    ex:ESCI;
+        form:label    "ESCI"@en ;
+      ]
+      [
+        form:value    ex:SCOAP3;
+        form:label    "SCOAP3"@en ;
+      ]
+      [
+        form:value    ex:PMID;
+        form:label    "PMID"@en ;
+      ]
+      [
+        form:value    ex:ArXiv;
+        form:label    "ArXiv"@en ;
+      ]
+      [
+        form:value    ex:WebOfScience;
+        form:label    "Web of Science"@en ;
+      ]
+      ) ;
+   form:label  "Identifier type"@en ;
+   form:required true ;
+   form:order 0 .
+
+:identifierValue
+   a form:Field ;
+   form:binding ex:identifierValue;
+   form:widget "string" ;
+   form:group "identifier" ;
+   form:label "Value"@en ;
+   form:required true ;
+   form:order 1.
+
+:additionalInfo
+   a form:Field ;
+   form:binding ex:additionalInfo;
+   form:widget "textarea" ;
+   form:label "Additional Info"@en ;
+   form:rows 6 ;
+   form:order 34 .
+
+:links
+   a form:Field ;
+   form:binding ex:link ;
+   form:widget "group" ;
+   form:label  "Link and relation to external material"@en ;
+   form:multiple true ;
+   form:order 35 .
+
+:linkType
+   a form:Field ;
+   form:binding ex:linkType;
+   form:group "links" ;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:DataManagementPlan;
+        form:label    "Data Management Plan"@en ;
+      ] 
+      [
+        form:value    ex:AccompanyingWebsite;
+        form:label    "Accompanying Website"@en ;
+      ]
+      [
+        form:value    ex:PeerReviewReport;
+        form:label    "Peer Review Report"@en ;
+      ]
+      [
+        form:value    ex:RelatedInformation;
+        form:label    "Related Information"@en ;
+      ]
+      [
+        form:value    ex:Software;
+        form:label    "Software"@en ;
+      ]
+      [
+        form:value    ex:TableOfContents;
+        form:label    "Table of Contents"@en ;
+      ]
+      [
+        form:value    ex:Fulltext;
+        form:label    "Fulltext"@en ;
+      ]
+      ) ;
+   form:label  "External material is"@en ;
+   form:required true ;
+   form:order 0 .
+
+:linkUrl
+   a form:Field ;
+   form:binding ex:linkUrl ;
+   form:group "links" ;
+   form:widget "url" ;
+   form:required true ;
+   form:label "URL"@en ;
+   form:order 1 .
