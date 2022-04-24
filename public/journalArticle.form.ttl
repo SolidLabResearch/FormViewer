@@ -54,8 +54,8 @@
    form:widget "string" ;
    form:group "author" ;
    form:label "First Name"@en ;
-   form:order 0 ;
-   form:required true .
+   form:required true ;
+   form:order 0 .
 
 :authorLastName
    a form:Field ;
@@ -63,8 +63,8 @@
    form:widget "string" ;
    form:group "author" ;
    form:label "Last Name"@en ;
-   form:order 1 ;
-   form:required true .
+   form:required true ;
+   form:order 1 .
 
 :authorExtern
     a form:Field ;
@@ -72,13 +72,12 @@
     form:widget   "checkbox" ;
     form:group "author" ;
     form:label    "Ugent?"@en ;
-    form:required true ;
     form:order 2 .
 
 :authorRole
    a form:Field ;
    form:binding ex:authorRole;
-    form:group "author" ;
+   form:group "author" ;
    form:widget "dropdown" ;
    form:option (
       [
@@ -147,7 +146,6 @@
       ]
       ) ;
    form:label  "Role"@en ;
-   form:required true ;
    form:order 3 .
 
 
@@ -164,8 +162,7 @@
    form:binding ex:alternaticeTitle;
    form:widget "string" ;
    form:label "Alternative Title"@en ;
-   form:order 3 ;
-   form:required true .
+   form:order 3 .
 
 :department
    a form:Field ;
@@ -219,8 +216,7 @@
    form:widget "string" ;
    form:group "editor" ;
    form:label "First Name"@en ;
-   form:order 0 ;
-   form:required true .
+   form:order 0 .
 
 :editorLastName
    a form:Field ;
@@ -228,8 +224,7 @@
    form:widget "string" ;
    form:group "editor" ;
    form:label "Last Name"@en ;
-   form:order 1 ;
-   form:required true .
+   form:order 1 .
 
 :editorExtern
     a form:Field ;
@@ -237,7 +232,6 @@
     form:widget   "checkbox" ;
     form:group "editor" ;
     form:label    "Ugent?"@en ;
-    form:required true ;
     form:order 2 .
 
 :publisher
@@ -267,7 +261,6 @@
     form:widget   "checkbox" ;
     form:label    "Published while none of the authors are employed at UGent"@en ;
     form:binding  ex:notUgentPublication ;
-    form:required true ;
     form:order 13 .
 
 :volume
@@ -489,7 +482,6 @@
       ]
       ) ;
    form:label  "Identifier type"@en ;
-   form:required true ;
    form:order 0 .
 
 :identifierValue
@@ -498,7 +490,6 @@
    form:widget "string" ;
    form:group "identifier" ;
    form:label "Value"@en ;
-   form:required true ;
    form:order 1.
 
 :additionalInfo
@@ -553,7 +544,6 @@
       ]
       ) ;
    form:label  "External material is"@en ;
-   form:required true ;
    form:order 0 .
 
 :linkUrl
@@ -561,6 +551,5 @@
    form:binding ex:linkUrl ;
    form:group "links" ;
    form:widget "url" ;
-   form:required true ;
    form:label "URL"@en ;
    form:order 1 .
