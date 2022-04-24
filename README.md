@@ -33,3 +33,13 @@ https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev
 ## The Results
 
 https://bellow2.ugent.be/test/dev/form/inbox/
+
+## Usage
+
+```
+https://bellow2.ugent.be/test/dev/#FORM-TTL-URL (+ #DATA-TEMPLATE-TTL-URL)
+
+E.g.
+
+https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/book-review.form.ttl#https://bellow2.ugent.be/test/dev/form/book-review.ttl
+```
