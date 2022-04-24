@@ -14,12 +14,6 @@
    ] ;
    form:binding ex:Book .
 
-:details
-   a form:UiComponent ;
-   form:widget "details" ;
-   form:label "Create a Book Review" ;
-   form:order 0 .
-
 :title
    a form:Field ;
    form:binding dc:title;

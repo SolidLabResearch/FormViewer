@@ -99,6 +99,20 @@
 </script>
 
 {#if formLocation}
+    <table>
+    <tr>
+    <th>Form template:</th>
+    <td>{formLocation}</td>
+    <th>Endpoint</th>
+    <td>{#if hydra}{hydra.endpoint}{/if}</td>
+    </tr>
+    <tr>
+    <th>Data template:</th> 
+    <td>{dataLocation}</td>
+    <th>Method</th>
+    <td>{#if hydra}{hydra.method}{/if}</td>
+    </tr>
+    </table>
     <rdf-form
            on:submit={handlerSubmit}
            id={id}
@@ -109,4 +123,16 @@
            selected-l10n-language={language}></rdf-form>
 {:else}
     <p>Need a form location in the URL</p>
+    <p>
+        Example <a href="https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/book-review.form.ttl">https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/book-review.form.ttl</a>
+    </p>
 {/if}
+
+<style>
+    th {
+        text-align: left;
+    }
+    td {
+        text-align: left;
+    }
+</style>

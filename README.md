@@ -1,6 +1,6 @@
-# Solid Form Viewer
+# Form Viewer
 
-A Solid Form Viewer app based on [rdf-form](https://github.com/danielbeeke/rdf-form).
+A Form Viewer app based on **Daniel Beek's** [rdf-form](https://github.com/danielbeeke/rdf-form).
 
 This is a demonstrator for the [Solid basic form builder](https://github.com/SolidLabResearch/Challenges/issues/19) challenge:
 
@@ -8,12 +8,12 @@ This is a demonstrator for the [Solid basic form builder](https://github.com/Sol
 - [x] Create a Form Viewer web app to that creates a simple web form using a Form Template
 - [x] The Form Template should be available on a public URL and loaded into the 
   application at run time
-- [x] Make the application to post data to a Solid pod container
+- [x] Make the application to post data to an [LDP](https://www.w3.org/TR/ldp/) resource 
 - [ ] Make the app store the provenance information of the results
-- [x] The location of the Solid pod container may be provided via the Form Template or be set at run time
+- [x] The location of the [LDP](https://www.w3.org/TR/ldp/) resource may be provided via the Form Template or be set at run time
 - [ ] Create a Result Viewer app that displays the results in a nice format (using the provenance information)
 
-The Solid Form Viewer can create a Web Form when a template URL is provided. 
+The Form Viewer can create a Web Form when a template URL is provided. 
 
 # Demonstrator 
 

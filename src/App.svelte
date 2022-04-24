@@ -4,6 +4,7 @@
 </script>
 
 <main>
+	<h1>Form Viewer App</h1>
 	{#if stored} 
 		<p>Thank you for your submission!</p>
 	{:else}
