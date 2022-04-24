@@ -1,0 +1,25 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix form:  <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
+@prefix ex:    <https://example.org/#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix schema:     <http://schema.org/> .
+@prefix focalPoint:       <http://localhost:8070/focalPoint.ttl#> .
+@prefix :      <https://bellow2.ugent.be/test/dev/form/activity-form.ttl#> .
+
+:form a form:Form ;
+   hydra:endpoint <https://bellow2.ugent.be/test/dev/form/inbox/> ;
+   hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "POST"
+   ] ;
+   form:binding ex:Book .
+
+:accept
+    a                 form:Field ;
+    form:widget       "wysiwyg" ;
+    form:label        "Content"@en ;
+    form:binding      dc:description ;
+    form:order        1 .
