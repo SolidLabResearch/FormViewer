@@ -6,6 +6,7 @@ This is a demonstrator for the [Solid basic form builder](https://github.com/Sol
 
 - [ ] Create a Form Builder web app to generate a Form Template
 - [x] Create a Form Viewer web app to that creates a simple web form using a Form Template
+- [ ] Make Form Template support for standard SHACL or ShEx shape expressions
 - [x] The Form Template should be available on a public URL and loaded into the 
   application at run time
 - [x] Make the application to post data to an [LDP](https://www.w3.org/TR/ldp/) resource 
