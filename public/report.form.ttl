@@ -1,0 +1,200 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix form:  <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
+@prefix ex:    <https://example.org/#> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix :      <https://bellow2.ugent.be/test/dev/form/activity-form.ttl#> .
+
+:form a form:Form ;
+   hydra:endpoint <https://bellow2.ugent.be/test/dev/form/inbox/> ;
+   hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "POST"
+   ] ;
+   form:binding ex:Report .
+
+:help
+   a form:Field ;
+   form:binding ex:brol;
+   form:widget "textarea" ;
+   form:label "Instructions"@en ;
+   form:placeholder "Please create a report on the article below" ;
+   form:readonly true;
+   form:order 0 .
+
+:artifact
+    a form:Field ;
+    form:widget "url" ;
+    form:label  "Article"@en ;
+    form:binding ex:artifact ;
+    form:required true ;
+    form:readonly true ;
+    form:order 1 .
+
+:reviewer
+    a form:Field ;
+    form:widget "reference" ;
+    form:label  "Reviewer Webid"@en ;
+    form:binding ex:reviewer ;
+    form:required true ;
+    form:order 2 .
+
+:report
+   a form:Field ;
+   form:binding ex:report;
+   form:widget "textarea" ;
+   form:label "Provide your report"@en ;
+   form:rows 6 ;
+   form:required true ;
+   form:order 3 .
+
+:validity
+   a form:Field ;
+   form:binding ex:validity;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Bad ;
+        form:label    "★ - Bad"@en ;
+      ] 
+      [
+        form:value    ex:NeedImprovement ;
+        form:label    "★★ - Needs improvement"@en ;
+      ]
+      [
+        form:value    ex:Good ;
+        form:label    "★★★ - Good"@en ;
+      ]
+      [
+        form:value    ex:Excellent ;
+        form:label    "★★★★ - Excellent"@en ;
+      ]
+      ) ;
+   form:label  "Validity"@en ;
+   form:order 4 .
+
+:significance
+   a form:Field ;
+   form:binding ex:significance;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Bad ;
+        form:label    "★ - Bad"@en ;
+      ] 
+      [
+        form:value    ex:NeedImprovement ;
+        form:label    "★★ - Needs improvement"@en ;
+      ]
+      [
+        form:value    ex:Good ;
+        form:label    "★★★ - Good"@en ;
+      ]
+      [
+        form:value    ex:Excellent ;
+        form:label    "★★★★ - Excellent"@en ;
+      ]
+      ) ;
+   form:label  "Significance"@en ;
+   form:order 5 .
+
+:originality
+   a form:Field ;
+   form:binding ex:orginality;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Bad ;
+        form:label    "★ - Bad"@en ;
+      ] 
+      [
+        form:value    ex:NeedImprovement ;
+        form:label    "★★ - Needs improvement"@en ;
+      ]
+      [
+        form:value    ex:Good ;
+        form:label    "★★★ - Good"@en ;
+      ]
+      [
+        form:value    ex:Excellent ;
+        form:label    "★★★★ - Excellent"@en ;
+      ]
+      ) ;
+   form:label  "Orginality"@en ;
+   form:order 6 .
+
+:clarity
+   a form:Field ;
+   form:binding ex:clarity;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Bad ;
+        form:label    "★ - Bad"@en ;
+      ] 
+      [
+        form:value    ex:NeedImprovement ;
+        form:label    "★★ - Needs improvement"@en ;
+      ]
+      [
+        form:value    ex:Good ;
+        form:label    "★★★ - Good"@en ;
+      ]
+      [
+        form:value    ex:Excellent ;
+        form:label    "★★★★ - Excellent"@en ;
+      ]
+      ) ;
+   form:label  "Clarity"@en ;
+   form:order 7 .
+
+:formatting
+   a form:Field ;
+   form:binding ex:formatting;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Bad ;
+        form:label    "★ - Bad"@en ;
+      ] 
+      [
+        form:value    ex:NeedImprovement ;
+        form:label    "★★ - Needs improvement"@en ;
+      ]
+      [
+        form:value    ex:Good ;
+        form:label    "★★★ - Good"@en ;
+      ]
+      [
+        form:value    ex:Excellent ;
+        form:label    "★★★★ - Excellent"@en ;
+      ]
+      ) ;
+   form:label  "Formatting"@en ;
+   form:order 8 .
+
+:grammar
+   a form:Field ;
+   form:binding ex:grammar;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:Bad ;
+        form:label    "★ - Bad"@en ;
+      ] 
+      [
+        form:value    ex:NeedImprovement ;
+        form:label    "★★ - Needs improvement"@en ;
+      ]
+      [
+        form:value    ex:Good ;
+        form:label    "★★★ - Good"@en ;
+      ]
+      [
+        form:value    ex:Excellent ;
+        form:label    "★★★★ - Excellent"@en ;
+      ]
+      ) ;
+   form:label  "Grammar"@en ;
+   form:order 9 .

@@ -46,6 +46,7 @@ https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev
 
 # More examples
 
+- [Peer Review Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/report.form.ttl#https://bellow2.ugent.be/test/dev/form/artifact1.ttl)
 - [Book Review Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/book-review.form.ttl)
 - [WYSIWIG Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/wysiwyg.form.ttl)
 - [Recipe Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/recipe.form.ttl)
