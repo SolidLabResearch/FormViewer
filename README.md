@@ -10,7 +10,7 @@ This is a demonstrator for the [Solid basic form builder](https://github.com/Sol
   application at run time
 - [x] Make the application to post data to a Solid pod container
 - [ ] Make the app store the provenance information of the results
-- [ ] The location of the Solid pod container may be provided via the Form Template or be set at run time
+- [x] The location of the Solid pod container may be provided via the Form Template or be set at run time
 - [ ] Create a Result Viewer app that displays the results in a nice format (using the provenance information)
 
 The Solid Form Viewer can create a Web Form when a template URL is provided. 

@@ -7,7 +7,9 @@
 	{#if stored} 
 		<p>Thank you for your submission!</p>
 	{:else}
-		<Form id="myForm" language="en" bind:stored="{stored}"/>
+		<Form id="myForm" 
+			  language="en" 
+			  bind:stored="{stored}"/>
 	{/if}
 </main>
 

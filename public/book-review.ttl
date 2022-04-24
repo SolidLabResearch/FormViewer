@@ -1,0 +1,9 @@
+@prefix ex: <https://example.org/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+
+<> a ex:Book ;
+   dc:title "Winne the Pooh" ;
+   dc:creator "A.A. Milne" ;
+   ex:rating ex:LikedIt ;
+   ex:other "Test" ;
+   dc:description "Not enough cats".

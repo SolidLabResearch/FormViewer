@@ -1,0 +1,75 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix form:  <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
+@prefix ex:    <https://example.org/#> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix :      <https://bellow2.ugent.be/test/dev/form/activity-form.ttl#> .
+
+:form a form:Form ;
+   hydra:endpoint <https://bellow2.ugent.be/test/dev/form/inbox/> ;
+   hydra:supportedClass [
+      a hydra:Class ;
+      hydra:method "POST"
+   ] ;
+   form:binding ex:Book .
+
+:details
+   a form:UiComponent ;
+   form:widget "details" ;
+   form:label "Create a Book Review" ;
+   form:order 0 .
+
+:title
+   a form:Field ;
+   form:binding dc:title;
+   form:widget "string" ;
+   form:label "Title"@en ;
+   form:order 1 ;
+   form:required true .
+
+:author
+   a form:Field ;
+   form:binding dc:creator ;
+   form:widget "string" ;
+   form:label "Author"@en ;
+   form:order 2 ;
+   form:required true .
+
+:rating
+   a form:Field ;
+   form:binding ex:rating ;
+   form:widget "dropdown" ;
+   form:option (
+      [
+        form:value    ex:NotLikeIt ;
+        form:label    "★ - I don't like it"@en ;
+      ] 
+      [
+        form:value    ex:ItWasOk ;
+        form:label    "★★ - It was ok"@en ;
+      ]
+      [
+        form:value    ex:LikedIt ;
+        form:label    "★★★ - I liked it"@en ;
+      ]
+      [
+        form:value    ex:ReallyLikedIt ;
+        form:label    "★★★★ - I really liked it"@en ;
+      ]
+      [
+        form:value    ex:Amazing ;
+        form:label    "★★★★★ - It was amazing"@en ;
+      ]
+      ) ;
+   form:label  "Rate this book"@en ;
+   form:order 3 .
+
+:review
+   a form:Field ;
+   form:binding dc:description ;
+   form:widget "textarea" ;
+   form:label "Review"@en ;
+   form:rows 6 ;
+   form:order 4 ;
+   form:required true .
