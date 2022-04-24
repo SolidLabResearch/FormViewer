@@ -5,6 +5,8 @@
 
 <main>
 	<h1>Form Viewer App</h1>
+</main>
+
 	{#if stored} 
 		<p>Thank you for your submission!</p>
 	{:else}
@@ -12,7 +14,7 @@
 			  language="en" 
 			  bind:stored="{stored}"/>
 	{/if}
-</main>
+
 
 <style>
 	main {

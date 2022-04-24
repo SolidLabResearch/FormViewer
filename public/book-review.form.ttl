@@ -14,6 +14,15 @@
    ] ;
    form:binding ex:Book .
 
+:help
+   a form:Field ;
+   form:binding ex:brol;
+   form:widget "textarea" ;
+   form:label "Instructions"@en ;
+   form:placeholder "Please create a book review" ;
+   form:readonly true;
+   form:order 0 .
+
 :title
    a form:Field ;
    form:binding dc:title;
