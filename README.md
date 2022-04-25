@@ -20,11 +20,11 @@ The Form Viewer can create a Web Form when a template URL is provided.
 
 ## The Form Template
 
-https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl
+https://phochste.github.io/FormViewer/book-review.form.ttl
 
 ## The Form Viewer App
 
-https://purl.org/acmeForms/app/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl
+https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/book-review.form.ttl
 
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
@@ -38,19 +38,19 @@ https://bellow2.ugent.be/test/dev/form/inbox/
 ## Usage
 
 ```
-https://bellow2.ugent.be/test/dev/#FORM-TTL-URL (+ #DATA-TEMPLATE-TTL-URL)
+https://phochste.github.io/FormViewer/#FORM-TTL-URL (+ #DATA-TEMPLATE-TTL-URL)
 
 E.g.
 
-https://purl.org/acmeForms/app/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.ttl
+https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/book-review.form.ttl#https://phochste.github.io/FormViewer/book-review.ttl
 ```
 
 # More examples
 
-- [Peer Review Form](https://purl.org/acmeForms/app/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/artifact1.ttl)
-- [Book Review Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/book-review.form.ttl)
-- [WYSIWIG Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/wysiwyg.form.ttl)
-- [Recipe Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/recipe.form.ttl)
-- [Confirm Form](https://purl.org/acmeForms/app/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/confirm.form.ttl)
-- [Bibliography Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/journalArticle.form.ttl)
-- [Doodle Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
+- [Peer Review Form](https://phochste.github.io/FormViewer/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/artifact1.ttl)
+- [Book Review Form](https://phochste.github.io/FormViewer/#https://purl.org/acmeForms/book-review.form.ttl)
+- [WYSIWIG Form](https://phochste.github.io/FormViewer/#https://purl.org/acmeForms/wysiwyg.form.ttl)
+- [Recipe Form](https://phochste.github.io/FormViewer/#https://purl.org/acmeForms/recipe.form.ttl)
+- [Confirm Form](https://phochste.github.io/FormViewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/confirm.form.ttl)
+- [Bibliography Form](https://phochste.github.io/FormViewer/#https://purl.org/acmeForms/journalArticle.form.ttl)
+- [Doodle Form](https://phochste.github.io/FormViewer/#https://purl.org/acmeForms/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
