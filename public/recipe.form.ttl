@@ -1,14 +1,20 @@
 @prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix recipe:     <http://rdf.danielbeeke.nl/recipe/recipe-dev.ttl#> .
+@prefix recipe:     <https://bellow2.ugent.be/test/dev/form/recipe-dev.ttl#> .
 @prefix owl:        <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms:    <http://purl.org/dc/terms/> .
 @prefix vann:       <http://purl.org/vocab/vann/> .
 @prefix form:       <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
 @prefix recipeForm: <http://localhost:8070/example.form#recipeForm> .
+@prefix hydra:      <http://www.w3.org/ns/hydra/core#> .
 @prefix schema:     <http://schema.org/> .
 
 <http://localhost:8070/example.form#recipeForm>
+    hydra:endpoint <https://httpbin.org/post> ;
+    hydra:supportedClass [
+        a hydra:Class ;
+        hydra:method "POST"
+    ] ;
     form:binding schema:Thing ;
     a            form:Form .
     

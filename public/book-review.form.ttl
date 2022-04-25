@@ -7,7 +7,7 @@
 @prefix :      <https://bellow2.ugent.be/test/dev/form/activity-form.ttl#> .
 
 :form a form:Form ;
-   hydra:endpoint <https://bellow2.ugent.be/test/dev/form/inbox/> ;
+   hydra:endpoint <https://httpbin.org/post> ;
    hydra:supportedClass [
       a hydra:Class ;
       hydra:method "POST"
