@@ -124,7 +124,7 @@
 {:else}
     <p>Need a form location in the URL</p>
     <p>
-        Example <a href="https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/book-review.form.ttl">https://bellow2.ugent.be/test/dev/form-viewer/#https://bellow2.ugent.be/test/dev/form/book-review.form.ttl</a>
+        Example <a href="https://purl.org/acmeForms/app/#https://purl.org/acmeForms/book-review.form.ttl">https://purl.org/acmeForms/app/#https://purl.org/acmeForms/book-review.form.ttl</a>
     </p>
 {/if}
 

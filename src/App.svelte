@@ -4,7 +4,7 @@
 </script>
 
 <main>
-	<h1>Form Viewer App</h1>
+	<h1>Acme Form Viewer</h1>
 </main>
 
 	{#if stored} 
