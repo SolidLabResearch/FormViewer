@@ -24,7 +24,7 @@ https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.fo
 
 ## The Form Viewer App
 
-https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl
+https://purl.org/acmeForms/app/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl
 
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
@@ -42,14 +42,15 @@ https://bellow2.ugent.be/test/dev/#FORM-TTL-URL (+ #DATA-TEMPLATE-TTL-URL)
 
 E.g.
 
-https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.ttl
+https://purl.org/acmeForms/app/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.ttl
 ```
 
 # More examples
 
-- [Peer Review Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/artifact1.ttl)
-- [Book Review Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://purl.org/acmeForms/book-review.form.ttl)
-- [WYSIWIG Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://purl.org/acmeForms/wysiwyg.form.ttl)
-- [Recipe Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://purl.org/acmeForms/recipe.form.ttl)
-- [Confirm Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/confirm.form.ttl)
-- [Bibliography Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://purl.org/acmeForms/journalArticle.form.ttl)
+- [Peer Review Form](https://purl.org/acmeForms/app/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/artifact1.ttl)
+- [Book Review Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/book-review.form.ttl)
+- [WYSIWIG Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/wysiwyg.form.ttl)
+- [Recipe Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/recipe.form.ttl)
+- [Confirm Form](https://purl.org/acmeForms/app/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/confirm.form.ttl)
+- [Bibliography Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/journalArticle.form.ttl)
+- [Doodle Form](https://purl.org/acmeForms/app/#https://purl.org/acmeForms/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
