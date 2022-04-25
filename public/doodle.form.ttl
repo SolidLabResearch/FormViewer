@@ -56,4 +56,4 @@
    form:label "Confirm"@en ;
    form:required true;
    form:saveEmptyValue true ;
-   form:order 1 .
+   form:order 1 .   

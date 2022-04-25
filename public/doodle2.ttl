@@ -1,0 +1,58 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/#>.
+
+[] a ex:Doodle ;
+   ex:participant (
+    [
+        ex:participantId <https://pieterheyvaert.com/#me> ;
+        ex:dates (
+            [
+                ex:date "2022-02-01" ;
+                ex:confirm false ;
+            ]
+            [
+                ex:date "2022-02-02" ;
+                ex:confirm false ;
+            ]
+            [
+                ex:date "2022-02-03" ;
+                ex:confirm false ;
+            ]
+        )
+    ]
+    [
+        ex:participantId <https://pietercolpaert.be/#me> ;
+        ex:dates (
+            [
+                ex:date "2022-02-01" ;
+                ex:confirm false ;
+            ]
+            [
+                ex:date "2022-02-02" ;
+                ex:confirm false ;
+            ]
+            [
+                ex:date "2022-02-03" ;
+                ex:confirm false ;
+            ]
+        )
+    ]
+    [
+        ex:participantId <https://ruben.verborgh.org/profile/#me> ;
+        ex:dates (
+            [
+                ex:date "2022-02-01" ;
+                ex:confirm false ;
+            ]
+            [
+                ex:date "2022-02-02" ;
+                ex:confirm false ;
+            ]
+            [
+                ex:date "2022-02-03" ;
+                ex:confirm false ;
+            ]
+        )
+    ]
+   ).
