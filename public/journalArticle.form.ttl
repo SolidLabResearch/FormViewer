@@ -66,12 +66,12 @@
    form:required true ;
    form:order 1 .
 
-:authorExtern
+:authorId
     a form:Field ;
-    form:binding  ex:authorUGent;
-    form:widget   "checkbox" ;
+    form:binding  ex:authorId;
+    form:widget   "reference" ;
     form:group "author" ;
-    form:label    "Ugent?"@en ;
+    form:label    "Webid"@en ;
     form:order 2 .
 
 :authorRole
@@ -226,12 +226,12 @@
    form:label "Last Name"@en ;
    form:order 1 .
 
-:editorExtern
+:editorId
     a form:Field ;
-    form:binding  ex:editorUGent;
-    form:widget   "checkbox" ;
+    form:binding  ex:editorId;
+    form:widget   "reference" ;
     form:group "editor" ;
-    form:label    "Ugent?"@en ;
+    form:label    "Webid"@en ;
     form:order 2 .
 
 :publisher
@@ -429,6 +429,74 @@
       [
         form:value    ex:Biology;
         form:label    "Biology and Life Sciences"@en ;
+      ]
+      [
+        form:value    ex:Economics;
+        form:label    "Business and Economics"@en ;
+      ]
+      [
+        form:value    ex:Chemistry;
+        form:label    "Chemistry"@en ;
+      ]
+      [
+        form:value    ex:CulturalSciences;
+        form:label    "Cultural Sciences"@en ;
+      ]
+      [
+        form:value    ex:EarthSciences;
+        form:label    "Earth and Environmental Sciences"@en ;
+      ]
+      [
+        form:value    ex:General;
+        form:label    "General Works"@en ;
+      ]
+      [
+        form:value    ex:History;
+        form:label    "History and Archaeology"@en ;
+      ]
+      [
+        form:value    ex:Languages;
+        form:label    "Languages and Literatures"@en ;
+      ]
+      [
+        form:value    ex:Law;
+        form:label    "Law and Political Sciences"@en ;
+      ]
+      [
+        form:value    ex:Mathematics;
+        form:label    "Mathematics and Statistics"@en ;
+      ]
+      [
+        form:value    ex:Medicine;
+        form:label    "Medicine and Health Sciences"@en ;
+      ]
+      [
+        form:value    ex:Arts;
+        form:label    "Performing Arts"@en ;
+      ]
+      [
+        form:value    ex:Philosophy;
+        form:label    "Philosophy and Religion"@en ;
+      ]
+      [
+        form:value    ex:Physics;
+        form:label    "Physics and Astronomy"@en ;
+      ]
+      [
+        form:value    ex:Science;
+        form:label    "Science General"@en ;
+      ]
+      [
+        form:value    ex:Sociology;
+        form:label    "Social Sciences"@en ;
+      ]
+      [
+        form:value    ex:Engineering;
+        form:label    "Technology and Engineering"@en ;
+      ]
+      [
+        form:value    ex:Vetenary;
+        form:label    "Vetenary Sciences"@en ;
       ]
       ) ;
    form:label  "Research Field"@en ;
