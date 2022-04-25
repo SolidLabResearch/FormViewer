@@ -47,7 +47,7 @@ https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com
 
 # More examples
 
-- [Peer Review Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/artifact1.ttl)
+- [Peer Review Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://raw.githubusercontent.com/phochste/FormViewer/main/public/artifact1.ttl)
 - [Book Review Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/book-review.form.ttl)
 - [WYSIWIG Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/wysiwyg.form.ttl)
 - [Recipe Form](https://bellow2.ugent.be/test/dev/form-viewer/#https://raw.githubusercontent.com/phochste/FormViewer/main/public/recipe.form.ttl)
