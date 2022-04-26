@@ -157,9 +157,9 @@
    form:order 2 ;
    form:required true .
 
-:alteranativeTitle
+:alternativeTitle
    a form:Field ;
-   form:binding ex:alternaticeTitle;
+   form:binding ex:alternativeTitle;
    form:widget "string" ;
    form:label "Alternative Title"@en ;
    form:order 3 .
