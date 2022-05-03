@@ -54,3 +54,4 @@ https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/boo
 - [Confirm Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/confirm.form.ttl)
 - [Bibliography Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/journalArticle.form.ttl)
 - [Doodle Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
+- [Todo Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/todo.form.ttl)
