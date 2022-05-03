@@ -1,6 +1,6 @@
 # Form Viewer
 
-A Form Viewer app based on [Daniël Beeke](https://danielbeeke.nl)'s [rdf-form](https://github.com/danielbeeke/rdf-form).
+A Form Viewer app based on **Daniel Beeke's** [rdf-form](https://github.com/danielbeeke/rdf-form).
 
 This is a demonstrator for the [Solid basic form builder](https://github.com/SolidLabResearch/Challenges/issues/19) challenge:
 
@@ -53,5 +53,4 @@ https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/boo
 - [Recipe Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/recipe.form.ttl)
 - [Confirm Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/confirm.form.ttl)
 - [Bibliography Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/journalArticle.form.ttl)
-- [Doodle Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
-- [Todo Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/todo.form.ttl#https://bellow2.ugent.be/test/dev/form/inbox/todo/todo.ttl)
+- [Doodle Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/doodle.form.ttl#https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)
