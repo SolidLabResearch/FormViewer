@@ -1,6 +1,6 @@
 # Form Viewer
 
-A Form Viewer app based on **Daniel Beeke's** [rdf-form](https://github.com/danielbeeke/rdf-form).
+A Form Viewer app based on [Daniël Beeke](https://danielbeeke.nl)'s [rdf-form](https://github.com/danielbeeke/rdf-form).
 
 This is a demonstrator for the [Solid basic form builder](https://github.com/SolidLabResearch/Challenges/issues/19) challenge:
 
