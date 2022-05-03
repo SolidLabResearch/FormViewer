@@ -7,7 +7,7 @@
 @prefix :      <http://localhost/todo-form.ttl#> .
 
 :form a form:Form ;
-    hydra:endpoint <https://bellow2.ugent.be/test/dev/form/inbox/todo/todo.ttl> ;
+    hydra:endpoint <https://hochstenbach.inrupt.net/public/dev/form/todo.ttl> ;
     hydra:supportedClass [
         a hydra:Class ;
         hydra:method "PUT"
