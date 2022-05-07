@@ -59,7 +59,13 @@ be submitted. An example:
    ] .
 ```
 
-This provides a demonstration for decentralized form handling: how to define a form, which data to put in the form, where the form needs to be stored is decoupled. Even the application you use to render the form and submit the results is decoupled from a specific server/website implementation.
+This provides a demonstration for decentralized form handling: how to define a form, what data to put in the form, where the form needs to be stored is decoupled. Even the application you use to render the form and submit the results is decoupled from a specific server/website implementation.
+
+- Alice could publish a book review form on her website
+- Bob could use a FormViewer application to post book review resources to his own Solid Pod
+- Bob could invite Charly to edit the resource
+- Charly could use his own FormViewer to update Bob's book review with Alice's form definition
+- Charly could submit the results also to his own Solid Pod by creating a hydra resource
 
 # More examples
 
