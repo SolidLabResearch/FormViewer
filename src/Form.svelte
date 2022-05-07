@@ -44,8 +44,7 @@
             PREFIX form: <http://rdf.danielbeeke.nl/form/form-dev.ttl#>
 
             SELECT ?endpoint ?method WHERE  {
-                ?id a form:Form ;
-                    hydra:endpoint ?endpoint ;
+                ?id hydra:endpoint ?endpoint ;
                     hydra:supportedClass [
                         hydra:method ?method 
                     ] .
@@ -91,17 +90,19 @@
         }
         else {
             let hash = location.hash.substring(1);
+            let hydraLocation;
 
             if (hash.includes("#")) {
                 let parts = hash.split('#');
                 formLocation = parts[0];
                 dataLocation = parts[1];
+                hydraLocation = parts[2];
             }
             else {
                 formLocation = hash;
             }
 
-            hydra = await fetchFormHydra(formLocation);
+            hydra = await fetchFormHydra(hydraLocation ? hydraLocation : formLocation);
 
             localStorage.setItem('formParam', JSON.stringify(
                {

@@ -1,0 +1,7 @@
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+
+[]  hydra:endpoint <https://hochstenbach.inrupt.net/inbox> ;
+   hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "POST"
+   ] .

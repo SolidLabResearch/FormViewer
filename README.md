@@ -38,12 +38,27 @@ https://bellow2.ugent.be/test/dev/form/inbox/
 ## Usage
 
 ```
-https://phochste.github.io/FormViewer/#FORM-TTL-URL (+ #DATA-TEMPLATE-TTL-URL)
+https://phochste.github.io/FormViewer/#FORM-TTL-URL [#DATA-TEMPLATE-TTL-URL] [#HYDRA-TTL-URL]
 
 E.g.
 
 https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/book-review.form.ttl#https://phochste.github.io/FormViewer/book-review.ttl
 ```
+
+The hydra-ttl-url is a Turtle resource to provide information where the form results should
+be submitten. An example:
+
+```
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+
+[]  hydra:endpoint <https://hochstenbach.inrupt.net/inbox> ;
+   hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "POST"
+   ] .
+```
+
+This provides a demonstration for decentralized form handling: how to define a form, which data to put in the form, where the form needs to be stored is decoupled. Even the application you use to render the form and submit the results is decoupled from a specific server/website implementation.
 
 # More examples
 
