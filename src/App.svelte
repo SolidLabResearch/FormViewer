@@ -1,10 +1,18 @@
 <script>
 	import Form from './Form.svelte';
+	import Login from './Login.svelte';
+	export let name;
+	let webId;
 	let stored = false;
 </script>
 
 <main>
-	<h1>Acme Form Viewer</h1>
+	<h1>{name}</h1>
+	{#if typeof(webId) != "undefined" }
+	<p>Logged in as {webId}</p>
+	{:else}
+	<Login bind:webId={webId}/>
+	{/if}
 </main>
 
 	{#if stored} 

@@ -18,7 +18,7 @@
         let jsonld = event.detail.expanded;
         let jsonldStr = JSON.stringify(jsonld,null,2);
 
-        const response = await fetch(hydra['endpoint'], {
+        const response = await solidClientAuthentication.fetch(hydra['endpoint'], {
             method: hydra['method'] ,
             body: jsonldStr ,
             headers: {
@@ -83,18 +83,35 @@
     }
 
     onMount( async () => {
-        let hash = location.hash.substring(1);
-
-        if (hash.includes("#")) {
-            let parts = hash.split('#');
-            formLocation = parts[0];
-            dataLocation = parts[1];
+        if (!location.hash) {
+            let formParam = JSON.parse(localStorage.getItem('formParam'));
+            formLocation = formParam.formLocation;
+            dataLocation = formParam.dataLocation;
+            hydra        = formParam.hydra;
         }
         else {
-            formLocation = hash;
-        }
+            let hash = location.hash.substring(1);
 
-        hydra = await fetchFormHydra(formLocation);
+            if (hash.includes("#")) {
+                let parts = hash.split('#');
+                formLocation = parts[0];
+                dataLocation = parts[1];
+            }
+            else {
+                formLocation = hash;
+            }
+
+            hydra = await fetchFormHydra(formLocation);
+
+            localStorage.setItem('formParam', JSON.stringify(
+               {
+                   formLocation: formLocation ,
+                   dataLocation: dataLocation ,
+                   hydra : hydra ,
+                   hash : window.location.hash
+               } 
+            ));
+        }
     });
 </script>
 
