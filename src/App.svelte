@@ -6,6 +6,7 @@
 	let stored = false;
 </script>
 
+<Login bind:profile={profile}/>
 <main>
 	<h1>{name}</h1>
 	{#if typeof(profile) != "undefined" }
@@ -14,8 +15,6 @@
 		{:else}
 			<img src="images/unknown.jpeg" width="50" height="50" alt="{profile.name}"/>
 		{/if}
-	{:else}
-	<Login bind:profile={profile}/>
 	{/if}
 </main>
 

@@ -4,6 +4,11 @@
     export let issuer;
     export let profile;
 
+    let showConnect = true;
+
+    const onConnect = (ev) => { showConnect = false };
+    const cancelConnect = (ev) => { showConnect = true };
+
     solidClientAuthentication.handleIncomingRedirect({ restorePreviousSession: true })
                                        .then( async info => {
         webId = info.webId;
@@ -69,14 +74,26 @@
 
 <div>
     {#if ! webId}
-      <form>
-        IDP:
-        <input
-          size="40"
-          type="text"
-          bind:value={issuer}
-        />
-        <button on:click|preventDefault={handleLogin}>Log In</button>
-      </form>
+      {#if showConnect}
+      <button 
+        class="btn"
+        on:click|preventDefault={onConnect}>Connect to Solid</button> 
+      {:else}
+        <form>
+          <label for="inputsm">What is your Solid IDP (e.g. http://[name].inrupt.net)</label>
+          <input
+            class="form-control input-sm"
+            style="max-width: 300px; align: right"
+            id="inputsm"
+            type="text"
+            bind:value={issuer} />
+          <button 
+            class="btn btn-success"
+            on:click|preventDefault={handleLogin}>Log In</button>
+          <button 
+            class="btn btn-danger"
+            on:click|preventDefault={cancelConnect}>Cancel</button> 
+        </form>
+      {/if}
     {/if}
 </div>
