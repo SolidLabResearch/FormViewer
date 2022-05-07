@@ -18,8 +18,9 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "rdf-form": "^0.1.27",
     "buffer": "^6.0.3",
-    "dotenv-webpack": "^7.0.3"
+    "dotenv-webpack": "^7.0.3",
+    "n3": "^1.16.1",
+    "rdf-form": "^0.1.27"
   }
 }

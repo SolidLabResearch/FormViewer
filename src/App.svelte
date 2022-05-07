@@ -2,16 +2,20 @@
 	import Form from './Form.svelte';
 	import Login from './Login.svelte';
 	export let name;
-	let webId;
+	let profile;
 	let stored = false;
 </script>
 
 <main>
 	<h1>{name}</h1>
-	{#if typeof(webId) != "undefined" }
-	<p>Logged in as {webId}</p>
+	{#if typeof(profile) != "undefined" }
+		{#if profile.image}
+			<img src="{profile.image}" width="50" height="50" alt="{profile.name}"/>
+		{:else}
+			<img src="images/unknown.jpeg" width="50" height="50" alt="{profile.name}"/>
+		{/if}
 	{:else}
-	<Login bind:webId={webId}/>
+	<Login bind:profile={profile}/>
 	{/if}
 </main>
 
