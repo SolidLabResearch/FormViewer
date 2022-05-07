@@ -47,7 +47,7 @@ https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/boo
 ```
 
 The hydra-ttl-url is a Turtle resource to provide information where the form results should
-be submitten. An example:
+be submitted. An example:
 
 ```
 @prefix hydra: <http://www.w3.org/ns/hydra/core#> .
