@@ -10,6 +10,7 @@ This is a demonstrator for the [Solid basic form builder](https://github.com/Sol
 - [x] The Form Template should be available on a public URL and loaded into the 
   application at run time
 - [x] Make the application to post data to an [LDP](https://www.w3.org/TR/ldp/) resource 
+- [x] Make the application to post data to a [Solid](https://solidproject.org) pod
 - [ ] Make the app store the provenance information of the results
 - [x] The location of the [LDP](https://www.w3.org/TR/ldp/) resource may be provided via the Form Template or be set at run time
 - [ ] Create a Result Viewer app that displays the results in a nice format (using the provenance information)
