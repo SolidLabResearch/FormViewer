@@ -1,0 +1,253 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix form:    <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
+@prefix ex:      <https://example.org/#> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+@prefix schema:  <http://schema.org/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
+@prefix fabio:   <http://purl.org/spar/fabio/> .
+@prefix resume:  <http://rdfs.org/resume-rdf/cv.rdfs#> .
+@prefix hydra:   <http://www.w3.org/ns/hydra/core#> .
+@prefix :        <https://phochste.github.io/FormViewer/cv.form.ttl#> .
+
+: 
+    a form:Form ;
+    hydra:endpoint <https://hochstenbach.inrupt.net/public/cv.ttl> ;
+    hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "PUT"
+    ] ;
+    form:binding schema:Person .
+
+:name
+    a form:Field ;
+    form:binding schema:name ;
+    form:widget "string" ;
+    form:label "Name" ;
+    form:required true ;
+    form:order 0 .
+
+:title
+    a form:Field ;
+    form:binding vcard:title ;
+    form:widget "string" ;
+    form:label "Title" ;
+    form:required false ;
+    form:order 1 .
+
+:description
+    a form:Field ;
+    form:binding schema:description ;
+    form:widget "textarea" ;
+    form:label "Description" ;
+    form:required false ;
+    form:order 2 .
+
+:affiliation
+    a form:Field ;
+    form:binding schema:affiliation ;
+    form:widget "url" ;
+    form:label "Affiliation" ;
+    form:multiple true ;
+    form:required true ;
+    form:order 3 .
+
+:workplaceHomepage
+    a form:Field ;
+    form:binding foaf:workplaceHomepage ;
+    form:widget "url" ;
+    form:label "Workplace Homepage" ;
+    form:multiple true ;
+    form:required false ;
+    form:order 4 .
+
+:email
+    a form:Field ;
+    form:binding schema:email ;
+    form:widget "string" ;
+    form:label "Email" ;
+    form:required false ;
+    form:order 5 .
+
+:phone
+    a form:Field ;
+    form:binding foaf:phone ;
+    form:widget "string" ;
+    form:label "Phone" ;
+    form:required false ;
+    form:order 6 .
+
+:img 
+    a form:Field ;
+    form:binding foaf:img ;
+    form:widget "url-image" ;
+    form:label "Image" ;
+    form:required false ;
+    form:order 7 .
+
+:seeAlso
+    a form:Field ;
+    form:binding rdfs:seeAlso ;
+    form:widget "group" ;
+    form:multiple true ;
+    form:label "See Also" ;
+    form:required false ;
+    form:order 8 .
+
+:alsoLabel 
+    a form:Field ;
+    form:binding rdf:type ;
+    form:widget "dropdown" ;
+    form:group "seeAlso" ;
+    form:label "Type" ;
+    form:option (
+         [
+             form:value   fabio:BibliographicMetadata ;
+             form:label   "Bibliography" ;
+         ]
+         [
+             form:value    fabio:ComputerProgram ;
+             form:label    "Computer Program" ;
+         ]
+         [
+             form:value    fabio:Microblog ;
+             form:label    "Microblog" ;
+         ] 
+         [
+             form:value    fabio:Presentation ;
+             form:label    "Presentation" ;
+         ] 
+         [
+             form:value    fabio:WebPage ;
+             form:label    "WebPage" ;
+         ]
+    ) ;
+    form:required true ;
+    form:order 0.
+
+:alsoLabel 
+    a form:Field ;
+    form:binding rdfs:label ;
+    form:widget "string" ;
+    form:group "seeAlso" ;
+    form:label "Label" ;
+    form:required true ;
+    form:order 1 .
+
+:alsoChoice
+    a form:Field ;
+    form:binding schema:url ;
+    form:widget "url" ;
+    form:group "seeAlso" ;
+    form:label "Url" ;
+    form:required true ;
+    form:order 2.
+
+:hasWorkHistory 
+    a form:Field ;
+    form:binding resume:hasWorkHistory ;
+    form:widget "group" ;
+    form:multiple true ;
+    form:label "Work History" ;
+    form:required false ;
+    form:order 9 .
+
+:startDate 
+    a form:Field ;
+    form:binding resume:startDate ;
+    form:widget "date" ;
+    form:group "hasWorkHistory" ;
+    form:label "Start" ;
+    form:required false ;
+    form:order 0.
+
+:endDate 
+    a form:Field ;
+    form:binding resume:endDate ;
+    form:widget "date" ;
+    form:group "hasWorkHistory" ;
+    form:label "End" ;
+    form:required false ;
+    form:order 1.
+
+:jobTitle
+    a form:Field ;
+    form:binding resume:jobType ;
+    form:widget "string" ;
+    form:group "hasWorkHistory" ;
+    form:label "Job Type" ;
+    form:required false ;
+    form:order 2.
+
+:jobDescription 
+    a form:Field ;
+    form:binding resume:jobDescription ;
+    form:widget "textarea" ;
+    form:group "hasWorkHistory" ;
+    form:label "Job Description" ;
+    form:required false ;
+    form:order 3.
+
+:hasEducation
+    a form:Field ;
+    form:binding resume:hasEducation ;
+    form:widget "group" ;
+    form:multiple true ;
+    form:label "Education History" ;
+    form:required false ;
+    form:order 10 .
+
+:eduStartDate
+    a form:Field ;
+    form:binding resume:eduStartDate ;
+    form:widget "date" ;
+    form:group "hasEducation" ;
+    form:label "Start" ;
+    form:required false ;
+    form:order 0.
+
+:eduEndDate
+    a form:Field ;
+    form:binding resume:eduEndDate ;
+    form:widget "date" ;
+    form:group "hasEducation" ;
+    form:label "End" ;
+    form:required false ;
+    form:order 1.
+
+:eduDescription 
+    a form:Field ;
+    form:binding resume:eduDescription ;
+    form:widget "textarea" ;
+    form:group "hasEducation" ;
+    form:label "Description" ;
+    form:required false ;
+    form:order 2.
+
+:hasOtherInfo
+    a form:Field ;
+    form:binding resume:hasOtherInfo ;
+    form:widget "group" ;
+    form:multiple true ;
+    form:label "Other Information" ;
+    form:required false ;
+    form:order 11 .
+
+:otherInfoType
+    a form:Field ;
+    form:binding resume:otherInfoType ;
+    form:widget "string" ;
+    form:group "hasOtherInfo" ;
+    form:label "Type" ;
+    form:required false ;
+    form:order 0.
+
+:otherInfoDescription 
+    a form:Field ;
+    form:binding resume:otherInfoDescription ;
+    form:widget "textarea" ;
+    form:group "hasOtherInfo" ;
+    form:label "Description" ;
+    form:required false ;
+    form:order 1.
