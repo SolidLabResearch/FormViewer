@@ -77,3 +77,7 @@ This provides a demonstration for decentralized form handling: how to define a f
 - [Bibliography Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/journalArticle.form.ttl)
 - [Doodle Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
 - [Todo Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/todo.form.ttl#https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)
+- My CV
+    - View it here : https://hochstenbach.inrupt.net/public/cv.ttl
+    - Edit it here (well you can't save it unless you are logged in with my WebId into a Solid pod)
+        - https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/cv.form.ttl#https://hochstenbach.inrupt.net/public/cv.ttl
