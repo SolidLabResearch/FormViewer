@@ -72,15 +72,14 @@
 
 </script>
 
-<div>
-    {#if ! webId}
-      {#if showConnect}
-      <button 
-        class="btn"
-        on:click|preventDefault={onConnect}>Connect to Solid</button> 
-      {:else}
-        <form>
-          <label for="inputsm">What is your Solid IDP (e.g. http://[name].inrupt.net)</label>
+{#if ! webId}
+   {#if showConnect}
+      <button on:click|preventDefault={onConnect}>Login</button> 
+   {:else}
+   <form>
+      <div class="row">
+        <div class="col-sm-12">
+          <label for="inputsm">Solid IDP</label>
           <input
             class="form-control input-sm"
             style="max-width: 300px; align: right"
@@ -93,7 +92,8 @@
           <button 
             class="btn btn-danger"
             on:click|preventDefault={cancelConnect}>Cancel</button> 
-        </form>
-      {/if}
-    {/if}
-</div>
+        </div>
+      </div>
+   </form>
+   {/if}
+{/if}

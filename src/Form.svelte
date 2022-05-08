@@ -11,6 +11,7 @@
     let formLocation;
     let dataLocation;
     let hydra;
+    let showConnectionDetails = false;
 
     let languages = JSON.stringify({"en": "English", "nl": "Nederlands"});
 
@@ -117,7 +118,15 @@
 </script>
 
 {#if formLocation}
-    <table>
+    {#if showConnectionDetails}
+    <button on:click|preventDefault={() => showConnectionDetails = false}>Hide details</button> 
+    <table class="table table-condensed">
+    <thead>
+        <tr>
+            <th colspan="4">Connection details</th>
+        </tr>
+    </thead>
+    <tbody>
     <tr>
     <th>Form template:</th>
     <td><a href="{formLocation}">{formLocation}</a></td>
@@ -130,7 +139,12 @@
     <th>Method</th>
     <td>{#if hydra}{hydra.method}{/if}</td>
     </tr>
+    </tbody>
     </table>
+    {:else}
+    <button on:click|preventDefault={() => showConnectionDetails = true}>Show details</button> 
+    {/if}
+
     <rdf-form
            on:submit={handlerSubmit}
            id={id}
@@ -145,12 +159,3 @@
         Example <a href="https://purl.org/acmeForms/app/#https://purl.org/acmeForms/book-review.form.ttl">https://purl.org/acmeForms/app/#https://purl.org/acmeForms/book-review.form.ttl</a>
     </p>
 {/if}
-
-<style>
-    th {
-        text-align: left;
-    }
-    td {
-        text-align: left;
-    }
-</style>
