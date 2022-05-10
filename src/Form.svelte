@@ -11,6 +11,8 @@
     let formLocation;
     let dataLocation;
     let hydra;
+    let isChangeEndpoint = false;
+    let isChangeMethod = false;
     let showConnectionDetails = false;
 
     let languages = JSON.stringify({"en": "English", "nl": "Nederlands"});
@@ -131,13 +133,42 @@
     <th>Form template:</th>
     <td><a href="{formLocation}">{formLocation}</a></td>
     <th>Endpoint</th>
-    <td>{#if hydra}<a href="{hydra.endpoint}">{hydra.endpoint}</a>{/if}</td>
+    <td>
+        {#if hydra}
+            {#if !isChangeEndpoint}
+            <a href="{hydra.endpoint}">{hydra.endpoint}</a>
+            <button 
+                class="btn btn-primary btn-xs"
+                on:click={() => isChangeEndpoint = true}>Change</button>
+            {:else}
+                <input 
+                    on:mouseleave={ () => isChangeEndpoint = false }
+                    on:change={(e) => { hydra.endpoint = e.target.value; isChangeEndpoint = false }}
+                    id="endpoint"
+                    type="text" value="{hydra.endpoint}" size="50">
+            {/if}
+        {/if}
+    </td>
     </tr>
     <tr>
     <th>Data template:</th> 
     <td>{#if dataLocation}<a href="{dataLocation}">{dataLocation}</a>{/if}</td>
     <th>Method</th>
-    <td>{#if hydra}{hydra.method}{/if}</td>
+    <td>{#if hydra}
+            {#if ! isChangeMethod}
+               {hydra.method}
+               <button 
+               class="btn btn-primary btn-xs"
+               on:click={() => isChangeMethod = true}>Change</button>
+            {:else}
+               <input 
+                on:mouseleave={ () => isChangeMethod = false }
+                on:change={(e) => { hydra.method = e.target.value; isChangeMethod = false }}
+                id="endpoint"
+                type="text" value="{hydra.method}" size="4"> 
+            {/if}
+        {/if}
+    </td>
     </tr>
     </tbody>
     </table>
