@@ -45,12 +45,15 @@
         const result = await myEngine.query(`
             PREFIX hydra: <http://www.w3.org/ns/hydra/core#> 
             PREFIX form: <http://rdf.danielbeeke.nl/form/form-dev.ttl#>
+            PREFIX dc: <http://purl.org/dc/terms/> 
 
-            SELECT ?endpoint ?method WHERE  {
+            SELECT ?endpoint ?method ?title ?description WHERE  {
                 ?id hydra:endpoint ?endpoint ;
                     hydra:supportedClass [
                         hydra:method ?method 
                     ] .
+                OPTIONAL { ?id dc:title ?title . }
+                OPTIONAL { ?id dc:description ?description . }
             }
         ` , {
             sources: [url]
@@ -66,21 +69,33 @@
 
         let endpoint;
         let method;
+        let title;
+        let description;
 
         if (bindings[0].has('?endpoint')) {
-            endpoint =  bindings[0].get('?endpoint').value;
+            endpoint = bindings[0].get('?endpoint').value;
         }
 
         if (bindings[0].has('?method')) {
             method =  bindings[0].get('?method').value;
         }
 
+        if (bindings[0].has('?title')) {
+            title =  bindings[0].get('?title').value;
+        }
+
+        if (bindings[0].has('?description')) {
+            description =  bindings[0].get('?description').value;
+        }
+
         console.log(`endpoint: ${endpoint}`);
         console.log(`method: ${method}`);
 
         return {
+            title: title ,
+            description: description ,
             method: method ,
-            endpoint: endpoint 
+            endpoint: endpoint , 
         }
     }
 
@@ -118,6 +133,15 @@
         }
     });
 </script>
+
+{#if hydra}
+  {#if hydra.title}<h1>{hydra.title}</h1>{/if}
+  {#if hydra.description}
+  <div class="panel panel-default">
+    <div class="panel-body">{hydra.description}</div>
+  </div>
+  {/if}
+{/if}
 
 {#if formLocation}
     {#if showConnectionDetails}

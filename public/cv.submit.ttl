@@ -1,0 +1,10 @@
+@prefix dc:    <http://purl.org/dc/terms/> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+
+[] dc:title "My CV" ;
+   dc:description "Please fill out this CV" ;
+   hydra:endpoint <https://hochstenbach.inrupt.net/public/cv.ttl> ;
+   hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "PUT"
+   ] .
