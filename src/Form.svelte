@@ -4,6 +4,7 @@
     
     const myEngine = Comunica.newEngine();
 
+    export let appName = "23718gg1";
     export let id;
     export let language;
     export let stored;
@@ -17,7 +18,7 @@
 
     let languages = JSON.stringify({"en": "English", "nl": "Nederlands"});
 
-    async function handlerSubmit(event) {
+    async function handleSubmit(event) {
         let jsonld = event.detail.expanded;
         let jsonldStr = JSON.stringify(jsonld,null,2);
 
@@ -101,7 +102,7 @@
 
     onMount( async () => {
         if (!location.hash) {
-            let formParam = JSON.parse(localStorage.getItem('formParam'));
+            let formParam = JSON.parse(localStorage.getItem(appName));
             formLocation = formParam.formLocation;
             dataLocation = formParam.dataLocation;
             hydra        = formParam.hydra;
@@ -122,7 +123,7 @@
 
             hydra = await fetchFormHydra(hydraLocation ? hydraLocation : formLocation);
 
-            localStorage.setItem('formParam', JSON.stringify(
+            localStorage.setItem(appName, JSON.stringify(
                {
                    formLocation: formLocation ,
                    dataLocation: dataLocation ,
@@ -201,7 +202,7 @@
     {/if}
 
     <rdf-form
-           on:submit={handlerSubmit}
+           on:submit={handleSubmit}
            id={id}
            data="{dataLocation}"
            form="{formLocation}"
