@@ -1,13 +1,20 @@
 <script>
     import * as N3 from 'n3';
-    export let webId;
-    export let issuer;
-    export let profile;
+    export let appName = "23718gg1";
+    export let profile = undefined;
 
+    let webId;
+    let issuer;
     let showConnect = true;
 
     const onConnect = (ev) => { showConnect = false };
     const cancelConnect = (ev) => { showConnect = true };
+
+    if (window.location.hash) {
+        localStorage.setItem(appName, JSON.stringify( {
+            hash : window.location.hash
+        }));
+    }
 
     solidClientAuthentication.handleIncomingRedirect({ restorePreviousSession: true })
                                        .then( async info => {
@@ -16,7 +23,7 @@
         profile = await fetchUserProfile(webId);
 
         // Restore hash...
-        let formParam = JSON.parse(localStorage.getItem('formParam'));
+        let formParam = JSON.parse(localStorage.getItem(appName));
         window.location.hash = formParam.hash;
     });
 
@@ -72,7 +79,7 @@
 
 </script>
 
-{#if ! webId}
+{#if ! profile}
    {#if showConnect}
       <button on:click|preventDefault={onConnect}>Login</button> 
    {:else}

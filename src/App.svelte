@@ -1,6 +1,7 @@
 <script>
 	import Form from './Form.svelte';
 	import Login from './Login.svelte';
+	import Logout from './Logout.svelte';
 	export let name;
 	let profile;
 	let stored = false;
@@ -13,13 +14,7 @@
 	  </div>
 	  <ul class="nav navbar-nav">
 		<li>
-			{#if typeof(profile) != "undefined" }
-				{#if profile.image}
-					<img src="{profile.image}" class="img-circle" width="50" height="50" alt="{profile.name}"/>
-				{:else}
-					<img src="images/unknown.jpeg" width="50" height="50" alt="{profile.name}"/>
-				{/if}
-			{/if}
+			<Logout bind:profile={profile}/>
 		</li>
 	  </ul>
 	</div>
