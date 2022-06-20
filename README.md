@@ -21,11 +21,11 @@ The Form Viewer can create a Web Form when a template URL is provided.
 
 ## The Form Template
 
-https://phochste.github.io/FormViewer/book-review.form.ttl
+https://formviewer.patrickhochstenbach.net/book-review.form.ttl
 
 ## The Form Viewer App
 
-https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/book-review.form.ttl
+https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl
 
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
@@ -39,11 +39,11 @@ https://bellow2.ugent.be/test/dev/form/inbox/
 ## Usage
 
 ```
-https://phochste.github.io/FormViewer/#FORM-TTL-URL [#DATA-TEMPLATE-TTL-URL] [#HYDRA-TTL-URL]
+https://formviewer.patrickhochstenbach.net/#FORM-TTL-URL [#DATA-TEMPLATE-TTL-URL] [#HYDRA-TTL-URL]
 
 E.g.
 
-https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/book-review.form.ttl#https://phochste.github.io/FormViewer/book-review.ttl
+https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl#https://formviewer.patrickhochstenbach.net/book-review.ttl
 ```
 
 The hydra-ttl-url is a Turtle resource to provide information where the form results should
@@ -69,12 +69,12 @@ This provides a demonstration for decentralized form handling: how to define a f
 
 # More examples
 
-- [Peer Review Form](https://phochste.github.io/FormViewer/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://phochste.github.io/FormViewer/artifact1.ttl)
-- [Book Review Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/book-review.form.ttl)
-- [WYSIWIG Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/wysiwyg.form.ttl)
-- [Recipe Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/recipe.form.ttl)
-- [Confirm Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/confirm.form.ttl)
-- [Bibliography Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/journalArticle.form.ttl)
-- [Doodle Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
-- [Todo Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/todo.form.ttl#https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)
-- [CV Form](https://phochste.github.io/FormViewer/#https://phochste.github.io/FormViewer/cv.form.ttl)
+- [Peer Review Form](https://formviewer.patrickhochstenbach.net/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://formviewer.patrickhochstenbach.net/artifact1.ttl)
+- [Book Review Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl)
+- [WYSIWIG Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/wysiwyg.form.ttl)
+- [Recipe Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/recipe.form.ttl)
+- [Confirm Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/confirm.form.ttl)
+- [Bibliography Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/journalArticle.form.ttl)
+- [Doodle Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
+- [Todo Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net//todo.form.ttl#https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)
+- [CV Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/cv.form.ttl)
