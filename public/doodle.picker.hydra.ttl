@@ -1,0 +1,7 @@
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+
+[] hydra:endpoint <https://labs.patrickhochstenbach.net/phochste/doodle/doodle.dates.jsonld> ;
+   hydra:supportedClass [
+       a hydra:Class ;
+       hydra:method "PUT"
+   ] .
