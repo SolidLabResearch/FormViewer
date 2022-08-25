@@ -1,85 +1,55 @@
-<script>
-    import * as N3 from 'n3';
-    export let appName = "23718gg1";
-    export let profile = undefined;
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import { handleIncomingRedirect, login, onSessionRestore, getDefaultSession, onLogin, onLogout, type ISessionInfo } from '@inrupt/solid-client-authn-browser';
+    import { fetchUserProfile , type ProfileType } from './util';
 
-    let webId;
-    let issuer;
-    let showConnect = true;
+    export let profile :ProfileType;
+
+    let sessionInfo : Promise<undefined | ISessionInfo>; 
+    let issuer : string;
+    let showConnect : boolean = true;
 
     const onConnect = (ev) => { showConnect = false };
     const cancelConnect = (ev) => { showConnect = true };
 
-    if (window.location.hash) {
-        localStorage.setItem(appName, JSON.stringify( {
-            hash : window.location.hash
-        }));
-    }
-
-    solidClientAuthentication.handleIncomingRedirect({ restorePreviousSession: true })
-                                       .then( async info => {
-        webId = info.webId;
-
-        profile = await fetchUserProfile(webId);
-
-        // Restore hash...
-        let formParam = JSON.parse(localStorage.getItem(appName));
-        window.location.hash = formParam.hash;
-    });
-
     function handleLogin() {
-        console.log(`Login to : ${issuer}`);
-        solidClientAuthentication.login({
+        console.log(`Login to : ${issuer} redirect : ${window.location.href}`);
+        login({
             oidcIssuer: issuer,
             redirectUrl: window.location.href,
-            clientName: "FormViewer"
+            clientName: "AcmeBase"
         });
     }
 
-    // From https://github.com/ewingson/nox
-    async function readSolidDocument(url) {
-        try {
-            const response = await solidClientAuthentication.fetch(url, { headers: { Accept: 'text/turtle' } });
+    onLogin( () => sessionChanged() );
+    onSessionRestore( (url) => sessionChanged(url));
+    onLogout( () => {
+        profile = undefined;
+        sessionInfo = null;
+    });
 
-            if (!isSuccessfulStatusCode(response.status))
-                return null;
-
-            const data = await response.text();
-            const parser = new N3.Parser({ baseIRI: url });
-
-            return parser.parse(data);
-        } catch (error) {
-            return null;
-        }
+    async function sessionChanged(url?: string) {
+      let session = getDefaultSession();
+      let webId = session.info.webId;
+      profile = await fetchUserProfile(webId); 
+      if (url) {
+        window.history.pushState({},undefined,url);
+      }
     }
 
-    function isSuccessfulStatusCode(statusCode) {
-        return Math.floor(statusCode / 100) === 2;
-    }
-
-    async function fetchUserProfile(webId) {
-        const profileQuads = await readSolidDocument(webId);
-        const givenNameQuad 
-              = profileQuads.find(quad => quad.predicate.value === 'http://xmlns.com/foaf/0.1/givenName');
-        const familyNameQuad 
-              = profileQuads.find(quad => quad.predicate.value === 'http://xmlns.com/foaf/0.1/familyName');
-        const nameQuad  
-              = profileQuads.find(quad => quad.predicate.value === 'http://xmlns.com/foaf/0.1/name');
-        const imageQuad 
-              = profileQuads.find(quad => quad.predicate.value === 'http://xmlns.com/foaf/0.1/img');
-
-        return {
-            webId: webId ,
-            givenName: givenNameQuad?.object.value ,
-            familyName: familyNameQuad?.object.value ,
-            name:  nameQuad?.object.value ,
-            image: imageQuad?.object.value,
-        };
-    }
-
+    onMount( () => {
+      sessionInfo = handleIncomingRedirect({ 
+          restorePreviousSession: true,
+          url: window.location.href
+      });
+    });
 </script>
 
-{#if ! profile}
+{#await sessionInfo}
+<!-- waiting -->
+{:then info} 
+  
+{#if ! (info && info.isLoggedIn) }
    {#if showConnect}
       <button on:click|preventDefault={onConnect}>Login</button> 
    {:else}
@@ -104,3 +74,5 @@
    </form>
    {/if}
 {/if}
+
+{/await}

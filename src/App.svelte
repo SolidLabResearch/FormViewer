@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Form from './Form.svelte';
 	import Login from './Login.svelte';
 	import Logout from './Logout.svelte';
