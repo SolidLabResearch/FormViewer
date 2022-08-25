@@ -5,7 +5,8 @@ export type IHydra = {
     title: string ,
     description: string ,
     method: string ,
-    endpoint: string 
+    endpoint: string ,
+    next: string
 };
 
 export type IFormParam = {
@@ -29,35 +30,37 @@ export async function storeResult(data: any, hydra: IHydra) : Promise<boolean> {
 }
 
 export async function fetchFormParam(appName: string) : Promise<IFormParam> {
-    let result : IFormParam;
+    let result = {};
 
     // Load the params from cache :P ...
     if (! location.hash) {
+        console.log(`loading form param from cache ${appName}`);
         result = JSON.parse(localStorage.getItem(appName));
     }
     else {
-        result.hash = location.hash.substring(1);
+        console.log(`loading form param from hash ${location.hash}`);
+        result['hash'] = location.hash.substring(1);
         
-        if (result.hash.includes("#")) {
-            let parts = result.hash.split('#');
-            result.formLocation  = parts[0];
-            result.dataLocation  = parts[1];
-            result.hydraLocation = parts[2];
+        if (result['hash'].includes("#")) {
+            let parts = result['hash'].split('#');
+            result['formLocation']  = parts[0];
+            result['dataLocation']  = parts[1];
+            result['hydraLocation'] = parts[2];
         }
         else {
-            result.formLocation = result.hash;
+            result['formLocation']  = result['hash'];
         }
 
-        result.hydra = await fetchHydra(
-                            result.hydraLocation ? 
-                                result.hydraLocation : 
-                                result.formLocation
+        result['hydra'] = await fetchHydra(
+                            result['hydraLocation'] ? 
+                                result['hydraLocation'] : 
+                                result['formLocation']
                         );
 
         localStorage.setItem(appName, JSON.stringify(result));
     }
 
-    return result;
+    return <IFormParam> {...result} ;
 }
 
 export async function fetchHydra(url: string) : Promise<IHydra | null> {
@@ -69,11 +72,12 @@ PREFIX hydra: <http://www.w3.org/ns/hydra/core#>
 PREFIX form: <http://rdf.danielbeeke.nl/form/form-dev.ttl#>
 PREFIX dc: <http://purl.org/dc/terms/> 
 
-SELECT ?endpoint ?method ?title ?description WHERE  {
+SELECT ?endpoint ?method ?next ?title ?description WHERE  {
     ?id hydra:endpoint ?endpoint ;
         hydra:supportedClass [
             hydra:method ?method 
         ] .
+    OPTIONAL { ?id hydra:next ?next . }
     OPTIONAL { ?id dc:title ?title . }
     OPTIONAL { ?id dc:description ?description . }
 }
@@ -91,12 +95,17 @@ SELECT ?endpoint ?method ?title ?description WHERE  {
     }
 
     let endpoint : string;
+    let next     : string;
     let method   : string;
     let title    : string;
     let description : string;
 
     if (bindings[0].has('endpoint')) {
         endpoint = bindings[0].get('endpoint').value;
+    }
+
+    if (bindings[0].has('next')) {
+        next = bindings[0].get('next').value;
     }
 
     if (bindings[0].has('method')) {
@@ -115,7 +124,8 @@ SELECT ?endpoint ?method ?title ?description WHERE  {
         title: title ,
         description: description ,
         method: method ,
-        endpoint: endpoint , 
+        endpoint: endpoint ,
+        next: next 
     };
 
     console.log(result);

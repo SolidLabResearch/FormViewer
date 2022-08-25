@@ -30,11 +30,7 @@ https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenba
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
  - Type any text in content
- - Send will post the data to my inbox
-
-## The Results
-
-https://bellow2.ugent.be/test/dev/form/inbox/
+ - Send will post the data to a http container at https://httpbin.org
 
 ## Usage
 
@@ -59,7 +55,15 @@ be submitted. An example:
    ] .
 ```
 
-This provides a demonstration for decentralized form handling: how to define a form, what data to put in the form, where the form needs to be stored is decoupled. Even the application you use to render the form and submit the results is decoupled from a specific server/website implementation.
+Hydra parameters:
+
+- _hydra:endpoint_ : the web resource to send the RDF output to
+- _hydra:method_ : the HTTP verb to use
+- _hydra:next_ : (optional) the web resource to load after a successful RDF submission
+
+## Rationale
+
+This app provides a demonstration for decentralized form handling: how to define a form, what data to put in the form, where the form needs to be stored is decoupled. Even the application you use to render the form and submit the results is decoupled from a specific server/website implementation.
 
 - Alice could publish a book review form on her website
 - Bob could use a FormViewer application to post book review resources to his own Solid Pod

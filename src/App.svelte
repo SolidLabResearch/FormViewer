@@ -4,7 +4,6 @@
 	import Logout from './Logout.svelte';
 	export let name;
 	let profile;
-	let stored = false;
 </script>
 
 <nav class="navbar navbar-default">
@@ -22,10 +21,4 @@
 
 <Login bind:profile={profile}/>
 
-{#if stored} 
-	<p>Thank you for your submission!</p>
-{:else}
-	<Form id="myForm" 
-		language="en" 
-		bind:stored="{stored}"/>
-{/if}
+<Form id="myForm" language="en" />
