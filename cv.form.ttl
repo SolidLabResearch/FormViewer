@@ -13,7 +13,7 @@
 
 : 
     a form:Form ;
-    hydra:endpoint <https://hochstenbach.inrupt.net/public/cv.ttl> ;
+    hydra:endpoint <https://hochstenbach.inrupt.net/public/cv.jsonld> ;
     hydra:supportedClass [
        a hydra:Class ;
        hydra:method "PUT"
