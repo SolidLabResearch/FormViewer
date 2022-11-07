@@ -2,7 +2,6 @@
     import 'rdf-form';
     import { type IFormParam, fetchFormParam, storeResult } from './helper';
     import { onMount } from 'svelte';
-import { HYDRA } from '@inrupt/vocab-common-rdf';
 
     export let appName = "23718gg1";
     export let id : string;
