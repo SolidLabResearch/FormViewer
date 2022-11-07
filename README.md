@@ -29,7 +29,7 @@ https://formviewer.patrickhochstenbach.net/book-review.form.ttl
 
 ## The Form Viewer App
 
-https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl
+https://formviewer.patrickhochstenbach.net?formLocation=https://formviewer.patrickhochstenbach.net/book-review.form.ttl
 
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
@@ -39,11 +39,17 @@ https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenba
 ## Usage
 
 ```
-https://formviewer.patrickhochstenbach.net/#FORM-TTL-URL [#DATA-TEMPLATE-TTL-URL] [#HYDRA-TTL-URL]
+https://formviewer.patrickhochstenbach.net/?PARAMS
+
+Where PARAMS :
+
+  formLocation=FORM-TTL-URL 
+  dataLocation=DATA-TEMPLATE-TTL-URL  (optional)
+  hydraLocation=HYDRA-TTL-URL         (optional)
 
 E.g.
 
-https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl#https://formviewer.patrickhochstenbach.net/book-review.ttl
+https://formviewer.patrickhochstenbach.net/?formLocation=https://formviewer.patrickhochstenbach.net/book-review.form.ttl&dataLocation=https://formviewer.patrickhochstenbach.net/book-review.ttl
 ```
 
 The hydra-ttl-url is a Turtle resource to provide information where the form results should
@@ -77,11 +83,11 @@ This app provides a demonstration for decentralized form handling: how to define
 
 # More examples
 
-- [Peer Review Form](https://formviewer.patrickhochstenbach.net/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://formviewer.patrickhochstenbach.net/artifact1.ttl)
-- [Book Review Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl)
-- [WYSIWIG Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/wysiwyg.form.ttl)
-- [Recipe Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/recipe.form.ttl)
-- [Confirm Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/confirm.form.ttl)
+- [Peer Review Form](https://formviewer.patrickhochstenbach.net/?formLocation=https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl&dataLocation=https://formviewer.patrickhochstenbach.net/artifact1.ttl)
+- [Book Review Form](https://formviewer.patrickhochstenbach.net/?formLocation=https://formviewer.patrickhochstenbach.net/book-review.form.ttl)
+- [WYSIWIG Form](https://formviewer.patrickhochstenbach.net/?formLocation=https://formviewer.patrickhochstenbach.net/wysiwyg.form.ttl)
+- [Recipe Form](https://formviewer.patrickhochstenbach.net/?formLocation=https://formviewer.patrickhochstenbach.net/recipe.form.ttl)
+- [Confirm Form](https://formviewer.patrickhochstenbach.net/?formLocation=https://formviewer.patrickhochstenbach.net/confirm.form.ttl)
 - [Bibliography Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/journalArticle.form.ttl)
 - [Doodle Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
 - [Todo Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net//todo.form.ttl#https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)

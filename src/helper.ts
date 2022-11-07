@@ -33,31 +33,30 @@ export async function fetchFormParam(appName: string) : Promise<IFormParam> {
     let result = {};
 
     // Load the params from cache :P ...
-    if (! location.hash) {
-        console.log(`loading form param from cache ${appName}`);
-        result = JSON.parse(localStorage.getItem(appName));
+    if (location.search) {
+        console.log(`loading form param from params`);
+
+        let params = new URLSearchParams(location.search);
+
+        if (params.get('formLocation')) {
+            result['formLocation'] = params.get('formLocation');
+        }
+        if (params.get('dataLocation')) {
+            result['dataLocation'] = params.get('dataLocation');
+        }
+        if (params.get('hydraLocation')) {
+            result['hydraLocation'] = params.get('hydraLocation');
+        }
+
+        if (result['hydraLocation']) {
+            result['hydra'] = await fetchHydra(result['hydraLocation']);
+        }
+        else if (result['formLocation']) {
+            result['hydra'] = await fetchHydra(result['formLocation']);
+        }
     }
     else {
-        console.log(`loading form param from hash ${location.hash}`);
-        result['hash'] = location.hash.substring(1);
-        
-        if (result['hash'].includes("#")) {
-            let parts = result['hash'].split('#');
-            result['formLocation']  = parts[0];
-            result['dataLocation']  = parts[1];
-            result['hydraLocation'] = parts[2];
-        }
-        else {
-            result['formLocation']  = result['hash'];
-        }
-
-        result['hydra'] = await fetchHydra(
-                            result['hydraLocation'] ? 
-                                result['hydraLocation'] : 
-                                result['formLocation']
-                        );
-
-        localStorage.setItem(appName, JSON.stringify(result));
+        return undefined;
     }
 
     return <IFormParam> {...result} ;
