@@ -12,7 +12,6 @@ export type IHydra = {
 export type IFormParam = {
     formLocation: string ,
     dataLocation: string ,
-    hash: string ,
     hydraLocation: string ,
     hydra: IHydra
 };
@@ -29,11 +28,13 @@ export async function storeResult(data: any, hydra: IHydra) : Promise<boolean> {
     return response.ok;
 }
 
-export async function fetchFormParam(appName: string) : Promise<IFormParam> {
+export async function fetchFormParam(data?: IFormParam) : Promise<IFormParam> {
     let result = {};
 
-    // Load the params from cache :P ...
-    if (location.search) {
+    if (data) {
+        result = {...data};
+    }
+    else if (location.search) {
         console.log(`loading form param from params`);
 
         let params = new URLSearchParams(location.search);
@@ -47,16 +48,19 @@ export async function fetchFormParam(appName: string) : Promise<IFormParam> {
         if (params.get('hydraLocation')) {
             result['hydraLocation'] = params.get('hydraLocation');
         }
-
-        if (result['hydraLocation']) {
-            result['hydra'] = await fetchHydra(result['hydraLocation']);
-        }
-        else if (result['formLocation']) {
-            result['hydra'] = await fetchHydra(result['formLocation']);
-        }
     }
     else {
         return undefined;
+    }
+
+    if (result['hydraLocation']) {
+        result['hydra'] = await fetchHydra(result['hydraLocation']);
+    }
+    else if (result['formLocation']) {
+        result['hydra'] = await fetchHydra(result['formLocation']);
+    }
+    else {
+        // No extra hydra location provided
     }
 
     return <IFormParam> {...result} ;

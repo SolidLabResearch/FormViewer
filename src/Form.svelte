@@ -3,7 +3,6 @@
     import { type IFormParam, fetchFormParam, storeResult } from './helper';
     import { onMount } from 'svelte';
 
-    export let appName = "23718gg1";
     export let id : string;
     export let language : string;
 
@@ -15,6 +14,35 @@
     let showConnectionDetails = false;
 
     let languages = JSON.stringify({"en": "English", "nl": "Nederlands"});
+
+    async function loadForm() {
+        formParam = await fetchFormParam();
+    }
+
+    async function updateForm(e) {
+        const formData = new FormData(e.target);
+        const data = {};
+        for (let field of formData) {
+            const [key, value] = field;
+            data[key] = value;
+        }
+        let path = window.location.href.split('?')[0] + "?";
+        if (data['formLocation']) {
+            path += '&formLocation=' + encodeURIComponent(data['formLocation']);
+        }
+        if (data['dataLocation']) {
+            path += '&dataLocation=' + encodeURIComponent(data['dataLocation']);
+        }
+        if (data['hydraLocation']) {
+            path += '&hydraLocation=' + encodeURIComponent(data['hydraLocation']);
+        }
+        window.history.pushState({},undefined,path);
+        formParam = await fetchFormParam(<IFormParam> data);
+    }
+
+    function clearForm() {
+        formParam = undefined;
+    }
 
     function pageRedirect(url: string) {
         window.setTimeout(function(){
@@ -40,10 +68,7 @@
         }
     }
 
-    onMount( async () => {
-        formParam = await fetchFormParam(appName);
-        console.log(formParam);
-    });
+    onMount( async () => { loadForm() });
 </script>
 
 {#if stored}
@@ -67,6 +92,7 @@
     {#if formParam && formParam.formLocation}
         {#if showConnectionDetails}
         <button on:click|preventDefault={() => showConnectionDetails = false}>Hide details</button> 
+        <button on:click|preventDefault={clearForm}>New Form</button> 
         <table class="table table-condensed">
         <thead>
             <tr>
@@ -119,6 +145,7 @@
         </table>
         {:else}
         <button on:click|preventDefault={() => showConnectionDetails = true}>Show details</button> 
+        <button on:click|preventDefault={clearForm}>New Form</button> 
         {/if}
 
         <rdf-form
@@ -135,7 +162,7 @@
             The ACME Form Viewer is a Solid App to generate RDF Forms and store
             the results in a Solid Pod.
         </p>
-        <form method="GET">
+        <form method="GET" on:submit|preventDefault={updateForm}>
             <div class="form-group">
                 <label for="formLocation">Form Location</label><br>
                 <input type="text" name="formLocation" size="80" aria-describedby="formHelp"><br>
