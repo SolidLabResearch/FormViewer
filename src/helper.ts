@@ -38,15 +38,15 @@ export async function fetchFormParam(data?: IFormParam) : Promise<IFormParam> {
         console.log(`loading form param from params`);
 
         let params = new URLSearchParams(location.search);
-
-        if (params.get('formLocation')) {
-            result['formLocation'] = params.get('formLocation');
+        
+        if (params.get('rft.form')) {
+            result['formLocation'] = params.get('rft.form');
         }
-        if (params.get('dataLocation')) {
-            result['dataLocation'] = params.get('dataLocation');
+        if (params.get('rft.data')) {
+            result['dataLocation'] = params.get('rft.data');
         }
-        if (params.get('hydraLocation')) {
-            result['hydraLocation'] = params.get('hydraLocation');
+        if (params.get('rft.hydra')) {
+            result['hydraLocation'] = params.get('rft.hydra');
         }
     }
     else {

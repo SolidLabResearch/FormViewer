@@ -26,15 +26,15 @@
             const [key, value] = field;
             data[key] = value;
         }
-        let path = window.location.href.split('?')[0] + "?";
+        let path = window.location.href.split('?')[0] + "?ctx_ver=Z39.88-2004&rft_val_fmt=http://formviewer.patrickhochstenbach.net";
         if (data['formLocation']) {
-            path += '&formLocation=' + encodeURIComponent(data['formLocation']);
+            path += '&rft.form=' + encodeURIComponent(data['formLocation']);
         }
         if (data['dataLocation']) {
-            path += '&dataLocation=' + encodeURIComponent(data['dataLocation']);
+            path += '&rft.data=' + encodeURIComponent(data['dataLocation']);
         }
         if (data['hydraLocation']) {
-            path += '&hydraLocation=' + encodeURIComponent(data['hydraLocation']);
+            path += '&rft.hydra=' + encodeURIComponent(data['hydraLocation']);
         }
         window.history.pushState({},undefined,path);
         formParam = await fetchFormParam(<IFormParam> data);
