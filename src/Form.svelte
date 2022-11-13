@@ -46,7 +46,7 @@
             on:submit={handleSubmit}
             id={id}
             data="{ formParam.dataLocation }"
-            form="{ formParam.formLocation }"
+            form="{ formParam.formData ? formParam.formData : formParam.formLocation }"
             ui-languages={languages}
             selected-language={language}
             selected-l10n-language={language}></rdf-form>

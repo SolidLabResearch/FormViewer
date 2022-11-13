@@ -1,0 +1,58 @@
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#form> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdf.danielbeeke.nl/form/form-dev.ttl#Form> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#form> <http://www.w3.org/ns/hydra/core#endpoint> <https://httpbin.org/post> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#form> <http://www.w3.org/ns/hydra/core#supportedClass> _:genid1 .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#form> <http://rdf.danielbeeke.nl/form/form-dev.ttl#binding> <https://example.org/#Book> .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/hydra/core#Class> .
+_:genid1 <http://www.w3.org/ns/hydra/core#method> "POST" .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#help> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdf.danielbeeke.nl/form/form-dev.ttl#Field> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#help> <http://rdf.danielbeeke.nl/form/form-dev.ttl#binding> <https://example.org/#brol> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#help> <http://rdf.danielbeeke.nl/form/form-dev.ttl#widget> "textarea" .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#help> <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "Instructions"@en .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#help> <http://rdf.danielbeeke.nl/form/form-dev.ttl#placeholder> "Please create a book review" .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#help> <http://rdf.danielbeeke.nl/form/form-dev.ttl#readonly> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#help> <http://rdf.danielbeeke.nl/form/form-dev.ttl#order> "0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdf.danielbeeke.nl/form/form-dev.ttl#Field> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#title> <http://rdf.danielbeeke.nl/form/form-dev.ttl#binding> <http://purl.org/dc/terms/title> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#title> <http://rdf.danielbeeke.nl/form/form-dev.ttl#widget> "string" .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#title> <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "Title"@en .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#title> <http://rdf.danielbeeke.nl/form/form-dev.ttl#order> "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#title> <http://rdf.danielbeeke.nl/form/form-dev.ttl#required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#author> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdf.danielbeeke.nl/form/form-dev.ttl#Field> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#author> <http://rdf.danielbeeke.nl/form/form-dev.ttl#binding> <http://purl.org/dc/terms/creator> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#author> <http://rdf.danielbeeke.nl/form/form-dev.ttl#widget> "string" .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#author> <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "Author"@en .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#author> <http://rdf.danielbeeke.nl/form/form-dev.ttl#order> "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#author> <http://rdf.danielbeeke.nl/form/form-dev.ttl#required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#rating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdf.danielbeeke.nl/form/form-dev.ttl#Field> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#rating> <http://rdf.danielbeeke.nl/form/form-dev.ttl#binding> <https://example.org/#rating> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#rating> <http://rdf.danielbeeke.nl/form/form-dev.ttl#widget> "dropdown" .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#rating> <http://rdf.danielbeeke.nl/form/form-dev.ttl#option> _:genid2 .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#rating> <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "Rate this book"@en .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#rating> <http://rdf.danielbeeke.nl/form/form-dev.ttl#order> "3"^^<http://www.w3.org/2001/XMLSchema#integer> .
+_:genid3 <http://rdf.danielbeeke.nl/form/form-dev.ttl#value> <https://example.org/#NotLikeIt> .
+_:genid3 <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "\u2605 - I don't like it"@en .
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid3 .
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid4 .
+_:genid5 <http://rdf.danielbeeke.nl/form/form-dev.ttl#value> <https://example.org/#ItWasOk> .
+_:genid5 <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "\u2605\u2605 - It was ok"@en .
+_:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid5 .
+_:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid6 .
+_:genid7 <http://rdf.danielbeeke.nl/form/form-dev.ttl#value> <https://example.org/#LikedIt> .
+_:genid7 <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "\u2605\u2605\u2605 - I liked it"@en .
+_:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid7 .
+_:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid8 .
+_:genid9 <http://rdf.danielbeeke.nl/form/form-dev.ttl#value> <https://example.org/#ReallyLikedIt> .
+_:genid9 <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "\u2605\u2605\u2605\u2605 - I really liked it"@en .
+_:genid8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid9 .
+_:genid8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid10 .
+_:genid11 <http://rdf.danielbeeke.nl/form/form-dev.ttl#value> <https://example.org/#Amazing> .
+_:genid11 <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "\u2605\u2605\u2605\u2605\u2605 - It was amazing"@en .
+_:genid10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:genid11 .
+_:genid10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#review> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdf.danielbeeke.nl/form/form-dev.ttl#Field> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#review> <http://rdf.danielbeeke.nl/form/form-dev.ttl#binding> <http://purl.org/dc/terms/description> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#review> <http://rdf.danielbeeke.nl/form/form-dev.ttl#widget> "textarea" .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#review> <http://rdf.danielbeeke.nl/form/form-dev.ttl#label> "Review"@en .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#review> <http://rdf.danielbeeke.nl/form/form-dev.ttl#rows> "6"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#review> <http://rdf.danielbeeke.nl/form/form-dev.ttl#order> "4"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<https://bellow2.ugent.be/test/dev/form/activity-form.ttl#review> <http://rdf.danielbeeke.nl/form/form-dev.ttl#required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .

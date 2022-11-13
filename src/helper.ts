@@ -1,5 +1,6 @@
 import * as Comunica from '@comunica/query-sparql';
 import { fetch } from '@inrupt/solid-client-authn-browser';
+import { alignResource } from './alignment';
 
 export type IHydra = {
     title: string ,
@@ -11,7 +12,9 @@ export type IHydra = {
 
 export type IFormParam = {
     formLocation: string ,
+    formData : string ,
     dataLocation: string ,
+    dataData : string,
     hydraLocation: string ,
     hydra: IHydra
 };
@@ -61,6 +64,12 @@ export async function fetchFormParam(data?: IFormParam) : Promise<IFormParam> {
     }
     else {
         // No extra hydra location provided
+    }
+
+    const formData = await alignResource(result['formLocation']);
+
+    if (formData) {
+        result['formData'] = formData;
     }
 
     return <IFormParam> {...result} ;
