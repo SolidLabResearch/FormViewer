@@ -1,6 +1,11 @@
 import * as Comunica from '@comunica/query-sparql';
 import { fetch } from '@inrupt/solid-client-authn-browser';
 import { alignResource } from './alignment';
+import rdfParser from "rdf-parse";
+import rdfSerializer from "rdf-serialize";
+
+const streamifyString = require('streamify-string');
+const stringifyStream = require('stream-to-string');
 
 export type IHydra = {
     title: string ,
@@ -19,16 +24,49 @@ export type IFormParam = {
     hydra: IHydra
 };
 
-export async function storeResult(data: any, hydra: IHydra) : Promise<boolean> {
-    const response = await fetch(hydra.endpoint, {
-        method: hydra.method ,
-        body: data ,
+export async function storeResult(json: string, formParam: IFormParam) : Promise<boolean> {
+
+    if (formParam.dataLocation) {
+        json['@id'] = formParam.dataLocation;
+    }
+    else {
+        delete json['@id'];
+    }
+
+    let jsonldStr = JSON.stringify(json,null,2);
+
+    const turtle = await rdfFromTo(jsonldStr, 'application/ld+json','text/turtle');
+
+    console.log(`
+${formParam.hydra.endpoint} ${formParam.hydra.method}   
+${turtle}
+`);
+
+    const response = await fetch(formParam.hydra.endpoint, {
+        method: formParam.hydra.method ,
+        body: turtle ,
         headers: {
-            "Content-Type": "application/ld+json"
+            "Content-Type": "text/turtle"
         }
     });
 
     return response.ok;
+}
+
+export async function fetchResource(resource:string) : Promise<string | null> {
+    const response = await fetch(resource, {
+        method: 'GET',
+        headers: {
+            "Accept": "text/turtle"
+        }
+    });  
+
+    if (response.ok) {
+        return await response.text();
+    }
+    else {
+        return null;
+    }
 }
 
 export async function fetchFormParam(data?: IFormParam) : Promise<IFormParam> {
@@ -66,16 +104,29 @@ export async function fetchFormParam(data?: IFormParam) : Promise<IFormParam> {
         // No extra hydra location provided
     }
 
-    const formData = await alignResource(result['formLocation']);
+    if (result['formLocation']) {
+        const formData = await alignResource(result['formLocation']);
 
-    if (formData) {
-        result['formData'] = formData;
+        if (formData) {
+            result['formData'] = formData;
+        }
+    }
+
+    if (result['dataLocation']) {
+        const dataData = await fetchResource(result['dataLocation']);
+
+        if (dataData) {
+            result['dataData'] = dataData;
+        }
+        else {
+            result['dataData'] = '@prefix ex: <https://example.org> .';
+        }
     }
 
     return <IFormParam> {...result} ;
 }
 
-export async function fetchHydra(url: string) : Promise<IHydra | null> {
+async function fetchHydra(url: string) : Promise<IHydra | null> {
     console.log(`loading hydra from: ${url}`);
 
     const myEngine = new Comunica.QueryEngine();
@@ -140,7 +191,13 @@ SELECT ?endpoint ?method ?next ?title ?description WHERE  {
         next: next 
     };
 
-    console.log(result);
+    return result;
+}
 
+async function rdfFromTo(data: string, inType: string, outType: string) : Promise<string> {
+    const inStream = streamifyString(data);
+    const quadStream = rdfParser.parse(inStream, { contentType: inType });
+    const outStream = rdfSerializer.serialize(quadStream, { contentType: outType });
+    const result = await stringifyStream(outStream);
     return result;
 }

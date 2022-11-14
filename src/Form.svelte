@@ -21,9 +21,8 @@
 
     async function handleSubmit(event) {
         let jsonld = event.detail.expanded;
-        let jsonldStr = JSON.stringify(jsonld,null,2);
-
-        if (storeResult(jsonldStr, formParam.hydra)) {
+        
+        if (storeResult(jsonld, formParam)) {
             console.log("Stored!");
             stored = true;
         }
@@ -45,7 +44,7 @@
         <rdf-form
             on:submit={handleSubmit}
             id={id}
-            data="{ formParam.dataLocation }"
+            data="{ formParam.dataData ? formParam.dataData : formParam.dataLocation }"
             form="{ formParam.formData ? formParam.formData : formParam.formLocation }"
             ui-languages={languages}
             selected-language={language}
