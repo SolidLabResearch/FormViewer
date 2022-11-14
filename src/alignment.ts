@@ -13,7 +13,17 @@ export const SHACL_FORM_TYPE = 0x03;
 // lists, correct prefix definitions, etc..). This shouldn't be needed when
 // RDF forms can parse any general input format.
 export async function alignResource(resource: string) : Promise<string | null> {
-    const store = await getRdfjsResourceFromURL(resource);
+    const rdf      = await fetchResource(resource);
+
+    if (isRdfFormTurtle(rdf)) {
+        console.log('form already in rdf-form format...');
+        return rdf;
+    }
+    else {
+        console.log('form not in rdf-form format, we will try to transform...');
+    }
+
+    const store    = await getRdfjsResourceFromString(rdf);
 
     const formType = await detectFormType(store);
     
@@ -30,6 +40,16 @@ export async function alignResource(resource: string) : Promise<string | null> {
         case SHACL_FORM_TYPE:
             // Not yet implemented...we could add schema alignment for shacl forms here
             return null;
+    }
+}
+
+// Check if the Turtle is already in the rdf-form format...
+function isRdfFormTurtle(rdf:string) : boolean {
+    if (rdf.match(/@prefix\s+form:\s+<http:\/\/rdf\.danielbeeke\.nl/) ) {
+        return true;
+    }   
+    else {
+        return false;
     }
 }
 
@@ -166,19 +186,23 @@ async function alignRdfFormResource(store: n3.Store) : Promise<string | null> {
     });
 }
 
-async function getRdfjsResourceFromURL(resource: string) : Promise <n3.Store> {
+async function fetchResource(resource:string) : Promise<string | null> {
     const response = await fetch(resource, {
         method: 'GET',
         headers: {
             "Accept": "text/turtle"
         }
-    }); 
+    });  
 
-    if (! response.ok) {
+    if (response.ok) {
+        return await response.text();
+    }
+    else {
         return null;
     }
+}
 
-    const rdf    = await response.text();
+async function getRdfjsResourceFromString(rdf: string) : Promise <n3.Store> {
     const parser = new n3.Parser();
     const store  = new n3.Store();
 
