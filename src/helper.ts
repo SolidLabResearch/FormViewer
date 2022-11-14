@@ -12,7 +12,6 @@ export type IHydra = {
 export type IFormParam = {
     formLocation: string ,
     dataLocation: string ,
-    hash: string ,
     hydraLocation: string ,
     hydra: IHydra
 };
@@ -29,35 +28,39 @@ export async function storeResult(data: any, hydra: IHydra) : Promise<boolean> {
     return response.ok;
 }
 
-export async function fetchFormParam(appName: string) : Promise<IFormParam> {
+export async function fetchFormParam(data?: IFormParam) : Promise<IFormParam> {
     let result = {};
 
-    // Load the params from cache :P ...
-    if (! location.hash) {
-        console.log(`loading form param from cache ${appName}`);
-        result = JSON.parse(localStorage.getItem(appName));
+    if (data) {
+        result = {...data};
+    }
+    else if (location.search) {
+        console.log(`loading form param from params`);
+
+        let params = new URLSearchParams(location.search);
+        
+        if (params.get('rft.form')) {
+            result['formLocation'] = params.get('rft.form');
+        }
+        if (params.get('rft.data')) {
+            result['dataLocation'] = params.get('rft.data');
+        }
+        if (params.get('rft.hydra')) {
+            result['hydraLocation'] = params.get('rft.hydra');
+        }
     }
     else {
-        console.log(`loading form param from hash ${location.hash}`);
-        result['hash'] = location.hash.substring(1);
-        
-        if (result['hash'].includes("#")) {
-            let parts = result['hash'].split('#');
-            result['formLocation']  = parts[0];
-            result['dataLocation']  = parts[1];
-            result['hydraLocation'] = parts[2];
-        }
-        else {
-            result['formLocation']  = result['hash'];
-        }
+        return undefined;
+    }
 
-        result['hydra'] = await fetchHydra(
-                            result['hydraLocation'] ? 
-                                result['hydraLocation'] : 
-                                result['formLocation']
-                        );
-
-        localStorage.setItem(appName, JSON.stringify(result));
+    if (result['hydraLocation']) {
+        result['hydra'] = await fetchHydra(result['hydraLocation']);
+    }
+    else if (result['formLocation']) {
+        result['hydra'] = await fetchHydra(result['formLocation']);
+    }
+    else {
+        // No extra hydra location provided
     }
 
     return <IFormParam> {...result} ;

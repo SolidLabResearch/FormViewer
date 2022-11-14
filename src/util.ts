@@ -43,11 +43,12 @@ export function getString(thing: Thing, property: string) : string | null {
 
     let map = getStringByLocaleAll(thing, property);
 
-    if (map) {
+    try {
         return map.values().next().value[0];
     }
-    
-    return null;
+    catch(_e) {
+        return null;
+    }
 }
 
 export async function fetchUserProfile(webId: string) : Promise<ProfileType> {

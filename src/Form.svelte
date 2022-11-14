@@ -2,9 +2,7 @@
     import 'rdf-form';
     import { type IFormParam, fetchFormParam, storeResult } from './helper';
     import { onMount } from 'svelte';
-import { HYDRA } from '@inrupt/vocab-common-rdf';
 
-    export let appName = "23718gg1";
     export let id : string;
     export let language : string;
 
@@ -16,6 +14,35 @@ import { HYDRA } from '@inrupt/vocab-common-rdf';
     let showConnectionDetails = false;
 
     let languages = JSON.stringify({"en": "English", "nl": "Nederlands"});
+
+    async function loadForm() {
+        formParam = await fetchFormParam();
+    }
+
+    async function updateForm(e) {
+        const formData = new FormData(e.target);
+        const data = {};
+        for (let field of formData) {
+            const [key, value] = field;
+            data[key] = value;
+        }
+        let path = window.location.href.split('?')[0] + "?ctx_ver=Z39.88-2004&rft_val_fmt=http://formviewer.patrickhochstenbach.net";
+        if (data['formLocation']) {
+            path += '&rft.form=' + encodeURIComponent(data['formLocation']);
+        }
+        if (data['dataLocation']) {
+            path += '&rft.data=' + encodeURIComponent(data['dataLocation']);
+        }
+        if (data['hydraLocation']) {
+            path += '&rft.hydra=' + encodeURIComponent(data['hydraLocation']);
+        }
+        window.history.pushState({},undefined,path);
+        formParam = await fetchFormParam(<IFormParam> data);
+    }
+
+    function clearForm() {
+        formParam = undefined;
+    }
 
     function pageRedirect(url: string) {
         window.setTimeout(function(){
@@ -41,10 +68,7 @@ import { HYDRA } from '@inrupt/vocab-common-rdf';
         }
     }
 
-    onMount( async () => {
-        formParam = await fetchFormParam(appName);
-        console.log(formParam);
-    });
+    onMount( async () => { loadForm() });
 </script>
 
 {#if stored}
@@ -57,17 +81,18 @@ import { HYDRA } from '@inrupt/vocab-common-rdf';
     {/if}
 {:else}
     {#if formParam && formParam.hydra}
-    {#if formParam.hydra.title}<h1>{formParam.hydra.title}</h1>{/if}
-    {#if formParam.hydra.description}
+        {#if formParam.hydra.title}<h1>{formParam.hydra.title}</h1>{/if}
+        {#if formParam.hydra.description}
     <div class="panel panel-default">
         <div class="panel-body">{formParam.hydra.description}</div>
     </div>
-    {/if}
+        {/if}
     {/if}
 
     {#if formParam && formParam.formLocation}
         {#if showConnectionDetails}
         <button on:click|preventDefault={() => showConnectionDetails = false}>Hide details</button> 
+        <button on:click|preventDefault={clearForm}>New Form</button> 
         <table class="table table-condensed">
         <thead>
             <tr>
@@ -120,6 +145,7 @@ import { HYDRA } from '@inrupt/vocab-common-rdf';
         </table>
         {:else}
         <button on:click|preventDefault={() => showConnectionDetails = true}>Show details</button> 
+        <button on:click|preventDefault={clearForm}>New Form</button> 
         {/if}
 
         <rdf-form
@@ -131,9 +157,58 @@ import { HYDRA } from '@inrupt/vocab-common-rdf';
             selected-language={language}
             selected-l10n-language={language}></rdf-form>
     {:else}
-        <p>Need a form location in the URL</p>
+        <h3>We need a form</h3>
         <p>
-            Example <a href="https://formviewer.patrickhochstenbach.net#https://formviewer.patrickhochstenbach.net/book-review.form.ttl">https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl</a>
+            The ACME Form Viewer is a Solid App to generate RDF Forms and store
+            the results in a Solid Pod.
+        </p>
+        <form method="GET" on:submit|preventDefault={updateForm}>
+            <div class="form-group">
+                <label for="formLocation">Form Location</label><br>
+                <input type="text" name="formLocation" size="80" aria-describedby="formHelp"><br>
+                <small id="formHelp" class="form-text text-muted">
+                    Fill in the location of an RDF Form definition. <br>
+                    E.g. https://formviewer.patrickhochstenbach.net/book-review.form.ttl
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="dataLocation">Data Location</label><br>
+                <input type="text" name="dataLocation" size="80" aria-describedby="dataHelp"><br>
+                <small id="dataHelp" class="form-text text-muted">
+                    Optional, provide the location of JSON-LD input data.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="hydraLocation">Hydra Location</label><br>
+                <input type="text" name="hydraLocation" size="80" aria-describedby="hydraHelp"><br>
+                <small id="hydraHelp" class="form-text text-muted">
+                    Optional, provide the location of a Hydra description where to send the results.
+                    <br> E.g. https://formviewer.patrickhochstenbach.net/hydra.ttl
+                </small>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+        <h3>Some example forms</h3>
+        
+        <ul>
+            <li>https://formviewer.patrickhochstenbach.net/book-review.ttl</li>
+            <li>https://formviewer.patrickhochstenbach.net/confirm.form.ttl</li>
+            <li>https://formviewer.patrickhochstenbach.net/doodle.form.ttl</li>
+            <li>https://formviewer.patrickhochstenbach.net/journalArticle.form.ttl</li>
+            <li>https://formviewer.patrickhochstenbach.net/recipe.form.ttl</li>
+            <li>https://formviewer.patrickhochstenbach.net/todo.form.ttl</li>
+            <li>https://formviewer.patrickhochstenbach.net/wysiwyg.form.ttl</li>
+        </ul>
+
+        <p>
+            The source code of this Solid App is available at: <a href="https://github.com/phochste/FormViewer">GitHub</a>.
         </p>
     {/if}
 {/if}
+
+<style>
+    label {
+        width: 200px;
+    }
+</style>

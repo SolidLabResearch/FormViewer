@@ -18,6 +18,7 @@ This is a demonstrator for the [Solid basic form builder](https://github.com/Sol
 - [x] The location of the [LDP](https://www.w3.org/TR/ldp/) resource may be provided via the Form Template or be set at run time
 - [x] Create a Result Viewer app that displays the results in a nice format (using the provenance information)
     - See https://github.com/phochste/CVViewer for an example app
+- [x] Use [OpenURL](https://en.wikipedia.org/wiki/OpenURL) as URL specification
 
 The Form Viewer can create a Web Form when a template URL is provided. 
 
@@ -29,7 +30,7 @@ https://formviewer.patrickhochstenbach.net/book-review.form.ttl
 
 ## The Form Viewer App
 
-https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl
+https://formviewer.patrickhochstenbach.net?rft.form=https://formviewer.patrickhochstenbach.net/book-review.form.ttl
 
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
@@ -39,11 +40,19 @@ https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenba
 ## Usage
 
 ```
-https://formviewer.patrickhochstenbach.net/#FORM-TTL-URL [#DATA-TEMPLATE-TTL-URL] [#HYDRA-TTL-URL]
+https://formviewer.patrickhochstenbach.net/?PARAMS
+
+Where PARAMS :
+ 
+  ctx_ver=Z39.88-2004             (optional protocol version)
+  rft_val_fmt=http://formviewer.patrickhochstenbach.net (optional parameter definition)
+  rft.form=FORM-TTL-URL 
+  rft.data=DATA-TEMPLATE-TTL-URL  (optional)
+  rft.hydra=HYDRA-TTL-URL         (optional)
 
 E.g.
 
-https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl#https://formviewer.patrickhochstenbach.net/book-review.ttl
+https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/book-review.form.ttl&rft.data=https://formviewer.patrickhochstenbach.net/book-review.ttl
 ```
 
 The hydra-ttl-url is a Turtle resource to provide information where the form results should
@@ -77,12 +86,12 @@ This app provides a demonstration for decentralized form handling: how to define
 
 # More examples
 
-- [Peer Review Form](https://formviewer.patrickhochstenbach.net/#https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl#https://formviewer.patrickhochstenbach.net/artifact1.ttl)
-- [Book Review Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/book-review.form.ttl)
-- [WYSIWIG Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/wysiwyg.form.ttl)
-- [Recipe Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/recipe.form.ttl)
-- [Confirm Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/confirm.form.ttl)
-- [Bibliography Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/journalArticle.form.ttl)
-- [Doodle Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/doodle.form.ttl#https://bellow2.ugent.be/test/dev/form/doodle.ttl)
-- [Todo Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net//todo.form.ttl#https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)
-- [CV Form](https://formviewer.patrickhochstenbach.net/#https://formviewer.patrickhochstenbach.net/cv.form.ttl)
+- [Peer Review Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl&rft.data=https://formviewer.patrickhochstenbach.net/artifact1.ttl)
+- [Book Review Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/book-review.form.ttl)
+- [WYSIWIG Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/wysiwyg.form.ttl)
+- [Recipe Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/recipe.form.ttl)
+- [Confirm Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/confirm.form.ttl)
+- [Bibliography Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/journalArticle.form.ttl)
+- [Doodle Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/doodle.form.ttl&rft.data=https://bellow2.ugent.be/test/dev/form/doodle.ttl)
+- [Todo Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net//todo.form.ttl&rft.data=https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)
+- [CV Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/cv.form.ttl)
