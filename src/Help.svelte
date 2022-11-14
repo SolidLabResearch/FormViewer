@@ -65,7 +65,7 @@
 <h3>Some example forms</h3>
         
 <ul>
-    <li>https://formviewer.patrickhochstenbach.net/book-review.ttl</li>
+    <li>https://formviewer.patrickhochstenbach.net/book-review.form.ttl</li>
     <li>https://formviewer.patrickhochstenbach.net/confirm.form.ttl</li>
     <li>https://formviewer.patrickhochstenbach.net/doodle.form.ttl</li>
     <li>https://formviewer.patrickhochstenbach.net/journalArticle.form.ttl</li>
