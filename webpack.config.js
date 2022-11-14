@@ -5,6 +5,7 @@ const sveltePreprocess = require('svelte-preprocess');
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
+const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -18,7 +19,9 @@ module.exports = {
 		extensions: ['.tsx', '.ts' , '.mjs' , '.js', '.svelte'],
 		mainFields: ['svelte', 'browser', 'module', 'main'],
 		fallback: {
-			"Buffer": require.resolve('buffer/'),
+			"buffer": require.resolve('buffer/'),
+			"util": require.resolve("util/"),
+			"stream": require.resolve("stream-browserify")
 		}
 	},
 	output: {
@@ -70,6 +73,14 @@ module.exports = {
 			filename: '[name].css'
 		}),
 		new Dotenv(),
+		// Work around for Buffer is undefined:
+        // https://github.com/webpack/changelog-v5/issues/10
+        new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+        }),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+        })
 	],
 	devtool: prod ? false : 'source-map',
 	devServer: {

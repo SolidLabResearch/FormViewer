@@ -31,6 +31,12 @@
     "buffer": "^6.0.3",
     "dotenv-webpack": "^7.0.3",
     "n3": "^1.16.1",
-    "rdf-form": "^0.1.27"
+    "rdf-form": "^0.1.29",
+    "rdf-parse": "^2.1.1",
+    "rdf-quad": "^1.5.0",
+    "rdf-serialize": "^2.0.1",
+    "stream-browserify": "^3.0.0",
+    "streamify-string": "^1.0.1",
+    "util": "^0.12.5"
   }
 }
