@@ -9,8 +9,13 @@ export const RDF_FORM_TYPE   = 0x01;
 export const SOLID_FORM_TYPE = 0x02;
 export const SHACL_FORM_TYPE = 0x03;
 
+// Helper function to return a rdf-forms Tutle layout (with nicely formatted
+// lists, correct prefix definitions, etc..). This shouldn't be needed when
+// RDF forms can parse any general input format.
 export async function alignResource(resource: string) : Promise<string | null> {
-    const formType = await detectFormType(resource);
+    const store = await getRdfjsResourceFromURL(resource);
+
+    const formType = await detectFormType(store);
     
     console.log(`detectFormType(${resource}) -> ${formType}`);
 
@@ -18,24 +23,24 @@ export async function alignResource(resource: string) : Promise<string | null> {
         case UNKNOWN_TYPE:
             return null;
         case RDF_FORM_TYPE:
-            return makeString(resource);
+            return alignRdfFormResource(store);
         case SOLID_FORM_TYPE:
-            // Not yet implemented...
+            // Not yet implemented...we could add schema alignment for solid forms here
             return null;
         case SHACL_FORM_TYPE:
-            // Not yet implemented...
+            // Not yet implemented...we could add schema alignment for shacl forms here
             return null;
     }
 }
 
-export async function detectFormType(resource: string) : Promise<number> {
-    if (await askComunica(resource, rdfFormMatch() )) {
+export async function detectFormType(store: n3.Store) : Promise<number> {
+    if (await askComunica(store, rdfFormMatch() )) {
         return RDF_FORM_TYPE;
     }
-    else if (await askComunica(resource, solidFormMatch())) {
+    else if (await askComunica(store, solidFormMatch())) {
         return SOLID_FORM_TYPE;
     }
-    else if (await askComunica(resource, shaclFormMatch())) {
+    else if (await askComunica(store, shaclFormMatch())) {
         return SHACL_FORM_TYPE;
     }
     else {
@@ -64,31 +69,16 @@ ASK { ?subject a sh:NodeShape }
 `
 }
 
-async function askComunica(resource: string, query: string) : Promise<boolean> {
+async function askComunica(store: n3.Store, query: string) : Promise<boolean> {
     const hasMatches = await myEngine.queryBoolean(query, {
-        sources: [ resource ] ,
-        fetch: fetch
+        sources: [ { type: 'rdfjsSource'  , value: store } ] ,
     });
     return hasMatches;
 }
 
-async function makeString(resource: string) : Promise<string | null> {
-    const response = await fetch(resource, {
-        method: 'GET',
-        headers: {
-            "Accept": "text/turtle"
-        }
-    }); 
-
-    if (! response.ok) {
-        return null;
-    }
-    const rdf = await response.text();
-
+async function alignRdfFormResource(store: n3.Store) : Promise<string | null> {
     return new Promise<string>( (resolve,reject ) => {
         const { namedNode } = n3.DataFactory;
-        const parser = new n3.Parser();
-        const store = new n3.Store();
         const writer = new n3.Writer({ 
                 prefixes: { 
                     rdf:  'http://www.w3.org/1999/02/22-rdf-syntax-ns#' ,
@@ -102,49 +92,98 @@ async function makeString(resource: string) : Promise<string | null> {
         const RDF_NIL   = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#nil';
         const FORM_OPTION = 'http://rdf.danielbeeke.nl/form/form-dev.ttl#option'; 
 
-        parser.parse(rdf, (error, quad) => {
-            // Retrieve an List Container from a store
-            const rdfLister = (store,sourceQ) => {
+        const rdfLister = (store,sourceQ) => {
+            let values = [];
+
+            let d = store.getQuads(sourceQ.subject,sourceQ.predicate,null);
                 
-                let values = [];
+            let tFirst : any[];
+            let tRest  : any[];
+            let tMember : any[];
+            let tSubject = d[0].object;
 
-                let d = store.getQuads(sourceQ.subject,sourceQ.predicate,null);
-                
-                let tFirst : any[];
-                let tRest  : any[];
-                let tMember : any[];
-                let tSubject = d[0].object;
+            do {
+                tMember = store.getQuads(tSubject,null,null,null);
+                tFirst = tMember.filter( (q) => q.predicate.value === RDF_FIRST);
+                tRest  = tMember.filter( (q) => q.predicate.value === RDF_REST);
 
-                do {
-                    tMember = store.getQuads(tSubject,null,null,null);
-                    tFirst = tMember.filter( (q) => q.predicate.value === RDF_FIRST);
-                    tRest  = tMember.filter( (q) => q.predicate.value === RDF_REST);
-
-                    if (tFirst && tFirst.length) {
-                        let tMemberItem = store.getQuads(
+                if (tFirst && tFirst.length) {
+                    let tMemberItem = store.getQuads(
                             tFirst[0].object, null, null, null
-                        ); 
-                        values.push(
-                            writer.blank(tMemberItem)
-                        );
-                        for (const q of tMemberItem) {
-                            store.delete(q);
-                        }
-                        store.delete(tFirst[0]);
+                    ); 
+                    values.push(
+                        writer.blank(tMemberItem)
+                    );
+                    for (const q of tMemberItem) {
+                        store.delete(q);
                     }
-                    if (tRest && tRest.length) {
-                        tSubject = tRest[0].object;
-                        store.delete(tRest[0]);
-                    }
-                } while (
-                        tRest && 
-                        tRest.length && 
-                        tRest[0].object.value !== RDF_NIL
+                    store.delete(tFirst[0]);
+                }
+                if (tRest && tRest.length) {
+                    tSubject = tRest[0].object;
+                    store.delete(tRest[0]);
+                }
+            } while (
+                tRest && 
+                tRest.length && 
+                tRest[0].object.value !== RDF_NIL
+            );
+
+            return values;
+        };
+
+        let optionLists = {};
+        const optionQuads = store.getQuads(null, namedNode(FORM_OPTION), null, null);
+
+        for (const q of optionQuads) {
+            const members = rdfLister(store, q);
+            optionLists[q.subject.value] = members;
+        }
+
+        for (const q of store) {
+            if (q.predicate.value === FORM_OPTION) {
+                writer.addQuad(
+                    q.subject,
+                    q.predicate,
+                    writer.list(
+                        optionLists[q.subject.value]
+                    )
                 );
+            }
+            else {
+                writer.addQuad(q);
+            }
+        }
 
-                return values;
-            };
+        writer.end((error, result) => {
+            if (error) {
+                reject(error);
+            }
+            else {
+                resolve(result);
+            }
+        });
+    });
+}
 
+async function getRdfjsResourceFromURL(resource: string) : Promise <n3.Store> {
+    const response = await fetch(resource, {
+        method: 'GET',
+        headers: {
+            "Accept": "text/turtle"
+        }
+    }); 
+
+    if (! response.ok) {
+        return null;
+    }
+
+    const rdf    = await response.text();
+    const parser = new n3.Parser();
+    const store  = new n3.Store();
+
+    return new Promise <n3.Store>( (resolve,reject) => {
+        parser.parse(rdf, (error, quad) => {
             if (error) {
                 reject(error);
             }
@@ -152,38 +191,8 @@ async function makeString(resource: string) : Promise<string | null> {
                 store.add(quad);
             }
             else {
-                let optionLists = {};
-                const optionQuads = store.getQuads(null, namedNode(FORM_OPTION), null, null);
-
-                for (const q of optionQuads) {
-                    const members = rdfLister(store, q);
-                    optionLists[q.subject.value] = members;
-                }
-
-                for (const q of store) {
-                    if (q.predicate.value === FORM_OPTION) {
-                        writer.addQuad(
-                            q.subject,
-                            q.predicate,
-                            writer.list(
-                                optionLists[q.subject.value]
-                            )
-                        );
-                    }
-                    else {
-                        writer.addQuad(q);
-                    }
-                }
-
-                writer.end((error, result) => {
-                    if (error) {
-                        reject(error);
-                    }
-                    else {
-                        resolve(result);
-                    }
-                });
-            }
+                resolve(store);
+            } 
         });
     });
 }

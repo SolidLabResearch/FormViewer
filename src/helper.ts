@@ -8,11 +8,12 @@ const streamifyString = require('streamify-string');
 const stringifyStream = require('stream-to-string');
 
 export type IHydra = {
-    title: string ,
     description: string ,
-    method: string ,
     endpoint: string ,
-    next: string
+    method: string ,
+    next: string ,
+    subject: string ,
+    title: string 
 };
 
 export type IFormParam = {
@@ -26,12 +27,8 @@ export type IFormParam = {
 
 export async function storeResult(json: string, formParam: IFormParam) : Promise<boolean> {
 
-    if (formParam.dataLocation) {
-        json['@id'] = formParam.dataLocation;
-    }
-    else {
-        delete json['@id'];
-    }
+    // Remove the @id to force generating a blank node...
+    delete json['@id']; 
 
     let jsonldStr = JSON.stringify(json,null,2);
 
@@ -135,7 +132,7 @@ PREFIX hydra: <http://www.w3.org/ns/hydra/core#>
 PREFIX form: <http://rdf.danielbeeke.nl/form/form-dev.ttl#>
 PREFIX dc: <http://purl.org/dc/terms/> 
 
-SELECT ?endpoint ?method ?next ?title ?description WHERE  {
+SELECT ?id ?endpoint ?method ?next ?title ?description WHERE  {
     ?id hydra:endpoint ?endpoint ;
         hydra:supportedClass [
             hydra:method ?method 
@@ -157,11 +154,16 @@ SELECT ?endpoint ?method ?next ?title ?description WHERE  {
         return null;
     }
 
+    let subject  : string;
     let endpoint : string;
     let next     : string;
     let method   : string;
     let title    : string;
     let description : string;
+
+    if (bindings[0].has('id')) {
+        subject = bindings[0].get('id').value;
+    }
 
     if (bindings[0].has('endpoint')) {
         endpoint = bindings[0].get('endpoint').value;
@@ -184,11 +186,12 @@ SELECT ?endpoint ?method ?next ?title ?description WHERE  {
     }
 
     const result : IHydra = {
-        title: title ,
         description: description ,
-        method: method ,
         endpoint: endpoint ,
-        next: next 
+        method: method ,
+        next: next ,
+        subject: subject ,
+        title: title 
     };
 
     return result;
