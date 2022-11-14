@@ -1,0 +1,6 @@
+_:df_89_4 a <https://example.org/Book>;
+    <http://purl.org/dc/terms/creator> "A.A. Milne";
+    <http://purl.org/dc/terms/description> "Not enough cats :)";
+    <http://purl.org/dc/terms/title> "Winne the Pooh";
+    <https://example.org/other> "Test :)";
+    <https://example.org/rating> <https://example.org/LikedIt>.
