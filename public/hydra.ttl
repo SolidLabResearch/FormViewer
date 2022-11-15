@@ -1,6 +1,12 @@
 @prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix dc: <http://purl.org/dc/terms/> .
 
 [] hydra:endpoint <https://hochstenbach.inrupt.net/inbox> ;
+   ## Optional define where to go after submitting the form
+   # hydra:next <http://some.page.on.the.web>
+   ## Optional header to show on form
+   # dc:title "The title of my form"
+   # dc:description "The description of my form"
    hydra:supportedClass [
        a hydra:Class ;
        hydra:method "POST"
