@@ -26,11 +26,11 @@ The Form Viewer can create a Web Form when a template URL is provided.
 
 ## The Form Template
 
-https://formviewer.patrickhochstenbach.net/book-review.form.ttl
+https://patrickhochstenbach.net/apps/formviewer/book-review.form.ttl
 
 ## The Form Viewer App
 
-https://formviewer.patrickhochstenbach.net?rft.form=https://formviewer.patrickhochstenbach.net/book-review.form.ttl
+https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://formviewer.patrickhochstenbach.net/book-review.form.ttl
 
  - Fill out a Web profile as actor and target
  - Fill out a URL as subject
@@ -40,7 +40,7 @@ https://formviewer.patrickhochstenbach.net?rft.form=https://formviewer.patrickho
 ## Usage
 
 ```
-https://formviewer.patrickhochstenbach.net/?PARAMS
+https://patrickhochstenbach.net/apps/formviewer/?PARAMS
 
 Where PARAMS :
  
@@ -52,7 +52,7 @@ Where PARAMS :
 
 E.g.
 
-https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/book-review.form.ttl&rft.data=https://formviewer.patrickhochstenbach.net/book-review.ttl
+https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/book-review.form.ttl&rft.data=https://patrickhochstenbach.net/apps/formviewer/book-review.ttl
 ```
 
 The hydra-ttl-url is a Turtle resource to provide information where the form results should
@@ -86,12 +86,12 @@ This app provides a demonstration for decentralized form handling: how to define
 
 # More examples
 
-- [Peer Review Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://hochstenbach.inrupt.net/public/dev/form/report.form.ttl&rft.data=https://formviewer.patrickhochstenbach.net/artifact1.ttl)
-- [Book Review Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/book-review.form.ttl)
-- [WYSIWIG Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/wysiwyg.form.ttl)
-- [Recipe Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/recipe.form.ttl)
-- [Confirm Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/confirm.form.ttl)
-- [Bibliography Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/journalArticle.form.ttl)
-- [Doodle Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/doodle.form.ttl&rft.data=https://bellow2.ugent.be/test/dev/form/doodle.ttl)
-- [Todo Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net//todo.form.ttl&rft.data=https://hochstenbach.inrupt.net/public/dev/form/todo.ttl)
-- [CV Form](https://formviewer.patrickhochstenbach.net/?rft.form=https://formviewer.patrickhochstenbach.net/cv.form.ttl)
+- [Peer Review Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/report.form.ttl&rft.data=https://patrickhochstenbach.net/apps/formviewer/artifact1.ttl)
+- [Book Review Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/book-review.form.ttl)
+- [WYSIWIG Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/wysiwyg.form.ttl)
+- [Recipe Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/recipe.form.ttl)
+- [Confirm Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/confirm.form.ttl)
+- [Bibliography Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/journalArticle.form.ttl)
+- [Doodle Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/doodle.form.ttl&rft.data=https://bellow2.ugent.be/test/dev/form/doodle.ttl)
+- [Todo Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/todo.form.ttl&rft.data=https://patrickhochstenbach.net/apps/formviewer/todo.ttl)
+- [CV Form](https://patrickhochstenbach.net/apps/formviewer/?rft.form=https://patrickhochstenbach.net/apps/formviewer/cv.form.ttl)
